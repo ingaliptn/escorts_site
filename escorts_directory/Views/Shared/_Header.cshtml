@@ -1,0 +1,104 @@
+﻿<!-- Header Combo-->
+<header class="header_section header_section_combo comboHeaderNav_StyleTopBottomCenter defaultStyle">
+	<!--Navigation header_wrap -->
+	<div class="header_wrap">
+		<div class="container">
+			<div class="nav_combo_block comboNavigation_BottomCenter">
+				<!--Brand Logo-->
+				<div class="Header_logo"><a asp-action="index"><img src="~/img/main_logo.png" alt="" title="" /></a></div>
+
+				<partial name="_Nav" />
+			</div>
+		</div>
+	</div>
+	<!--End Navigation header_wrap -->
+	<!-- Sticky Header  -->
+	<div class="sticky-header">
+		<div class="header_wrap">
+			<!--Keep This Empty / Menu will come through Javascript-->
+		</div>
+	</div><!-- End Sticky Menu -->
+	<!-- Mobile Header -->
+	<div class="mobileNavCombo_header">
+		<!--Nav Box-->
+		<div class="nav-outer clearfix">
+			<!--Keep This Empty / Menu will come through Javascript-->
+			<div class="Header_logo"><a asp-action="index"><img src="~/img/main_logo.png" alt="" title="" /></a></div>
+			<div class="headerRight_ActionBtn">
+				<div class="headerBtn_block">
+					<button type="button" class="search-btn"><i class="fa fa-search"></i><span></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Mobile Sticky Header -->
+	<div class="mobile-sticky-header">
+		<div class="Header_logo"><a asp-action="index"><img src="~/img/main_logo.png" alt="" title="" /></a></div>
+		<!--Nav Box-->
+		<div class="nav-outer clearfix">
+			<div class="headerRight_ActionBtn">
+				<div class="headerBtn_block">
+					<button type="button" class="search-btn"><i class="fa fa-search"></i><span></span></button>
+				</div>
+			</div>
+			<!--Keep This Empty / Menu will come through Javascript-->
+		</div>
+	</div>
+
+	<!-- Mobile Menu  -->
+	<div class="mobile-menu">
+		<span class="mobile-menu-back-drop"></span>
+		<div class="menu-outer">
+			<nav class="nav_combo_block">
+				<div class="nav-logo"><a asp-action="index"><img src="~/img/main_logo.png" alt="" title="" /></a></div><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+			</nav>
+		</div>
+	</div><!-- End Mobile Menu -->
+	<!-- Header Search -->
+	<div class="search-popup">
+		<span class="search-back-drop"></span>
+		<div class="search-inner">
+			<div class="container">
+				<div class="upper-text searchTitleLine">
+					<div class="text">Search</div>
+					<button class="close-search searchBtnBlock"><span class="fa fa-times"></span></button>
+				</div>
+
+				<div Class="filterSearch_field">
+					<form method="post" action="">
+						<div class="form-group">
+							<select class="customField_design" type="selectState" name="search-state">
+								<option value="0">Select State</option>
+								<option value="1">Los Angles</option>
+								<option value="2">Naveda</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<select class="customField_design" type="selectCity" name="search-city">
+								<option value="0">Select City</option>
+								<option value="1">Las Vegas</option>
+								<option value="2">Henderson</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<select class="customField_design" type="searchGender" name="search-gender">
+								<option value="0">Select Gender</option>
+								<option value="1">Male</option>
+								<option value="2">Female</option>
+							</select>
+						</div>
+
+						<div class="form-group searchBtnVisible">
+							<button type="submit" class="searchBtn"><i class="fa fa-search"></i> Find</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Header Search -->
+</header>
+<!--End Main Header -->

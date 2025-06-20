@@ -1,0 +1,165 @@
+﻿@using escorts_directory.Models.VM
+@model EscortsViewModel
+
+
+<partial name="_Header" />
+<partial name="_HeroVideo" />
+
+<main class="main_container_wrapper">
+
+    <section class="featured_model_carouslSection model_listGridSection">
+        <div class="featuresModle_bgOverlay">
+            <div class="highlitedModel_gridList">
+                @foreach (var escort in Model.Featured)
+                {
+                    <div class="modelPhoto photoWith_review largeHeight">
+                        <figure class="modelPhoto-image-container">
+                            <a asp-action="model_profile" asp-route-id="@escort.Id" class="modelPhoto-image">
+                                <img src="@Url.Content($"/images/Profiles/{escort.Name}/{escort.Name}_{escort.Id}_1.png")"
+                                     onerror="this.onerror=null; this.src='@Url.Content("/images/no-image.jpg")';"
+                                     alt="@escort.Name" />
+                            </a>
+                        </figure>
+                        <div class="modelPhoto-details desctionText_hide">
+                            <div class="modelTitle_Style vignetColor">
+                                <p>@escort.LocationCity</p>
+                                <h2><span>@escort.Name</span></h2>
+                                <div class="model_sortBiography_lists">
+                                    <ul>
+                                        <li>Age: @escort.Age</li>
+                                        <li>Height: @escort.HeightCm cm</li>
+                                        <li>Body type: @escort.BustType</li>
+                                        <li>Bust: @escort.BustSize</li>
+                                        <li>Hair colour: @escort.HairColor</li>
+                                        <li>Eye colour: @escort.Eyes</li>
+                                    </ul>
+                                    <a asp-action="model_profile" asp-route-id="@escort.Id">Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+
+    <section class="featured_model_carouslSection model_listGridSection">
+        <div class="featuresModle_bgOverlay">
+            <div class="regularModel_gridList" id="escortContainer">
+                @foreach (var escort in Model.Regular.Take(12))
+                {
+                    <div class="modelPhoto photoWith_review largeHeight">
+                        <figure class="modelPhoto-image-container">
+                            <a asp-action="model_profile" asp-route-id="@escort.Id" class="modelPhoto-image">
+                                <img src="@Url.Content($"/images/Profiles/{escort.Name}/{escort.Name}_{escort.Id}_1.png")"
+                                     onerror="this.onerror=null; this.src='@Url.Content("/images/no-image.jpg")';"
+                                     alt="@escort.Name" />
+                            </a>
+                        </figure>
+                        <div class="modelPhoto-details desctionText_hide">
+                            <div class="modelTitle_Style vignetColor">
+                                <p>@escort.LocationCity</p>
+                                <h2><span>@escort.Name</span></h2>
+                                <div class="model_sortBiography_lists">
+                                    <ul>
+                                        <li>Age: @escort.Age</li>
+                                        <li>Height: @escort.HeightCm cm</li>
+                                        <li>Body type: @escort.BustType</li>
+                                        <li>Bust: @escort.BustSize</li>
+                                        <li>Hair colour: @escort.HairColor</li>
+                                        <li>Eye colour: @escort.Eyes</li>
+                                    </ul>
+                                    <a asp-action="model_profile" asp-route-id="@escort.Id">Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="bannerButton_group">
+                <a href="#" id="loadMoreBtn" data-skip="12">
+                    <span id="loadText">Load more</span>
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--Text Content Section -->
+    <section id="section_block" class="Text_Content_Section staticContent_block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="LV_Article_Block">
+                        <h2>Exotic Las Vegas escorts services</h2>
+                        <!--<div class="Article_imageBlock"><img src="~/images/content_img/4.jpg" alt="" title="" class="img-fluid" /></div>-->
+                        <p>Escort service and its need can’t be denied. <a href="#">Giving one the chance to feel the sensual excitement</a>, escort service satiates the sensual thirst of individuals by providing the best companionship experience. Among all, Las Vegas holds importance relating to sensual services. Las Vegas escorts services are considered as the best medium to content one’s thirst with the finest tempestuous services.</p>
+                        <p>Vegas is considered as the paradise which never leaves anyone hungry. Take the fun of the neon light on the Strip, the world-famous casinos, exotic stripper clubs along with the exceptional escort service that stands healing for one’s nerves. So have complete fun in this land of luxury where beautiful and elegant escorts can come to your room for giving an exotic experience of coupling.</p>
+                        <p>You can get an exotic treatment when you come to Vegas for business purposes or vacation. You can bring your partner or can have faith in the top-notch gorgeous babes of Vegas for having the most desirable experience of companionship. All your sensual desires will be content when you connect with these babes for a delightful experience.</p>
+                        <p>Come to Vegas for inhaling the experience that provides intense happiness to your nerves. Experience the luxurious stay in Vegas that enrolls you in a memory that you will cherish throughout your life. Undoubtedly you will come to Vegas for taking the sensual fun that is hardly available in other parts of the world.</p>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="LV_Article_Block">
+                        <h2>Authenticate Las Vegas escort agency</h2>
+                        <div class="Article_imageBlock"><img src="~/images/content_img/5.jpg" alt="" title="" class="img-fluid" /></div>
+                        <p>Finding an escort service provider in Vegas is not that hard. You can always find someone offering sensual companionship in Vegas at every turn. Are you interest in going with them? Or you wish to make the best selection? Well, when you intend to make the perfect selection you need to search for our Las Vegas escort agency.</p>
+                        <p>As soon as you land in Vegas, you will spot many advertisements calling you to spend some erotic moments with beautiful babes. Well, advertisements for independent escorts also get visible in some of the popular classified advertising websites. They are alluring to the nerves. In fact, in the corner of every street, it is not hard to spot the bold and beautiful ladies. But do you want to go with them?</p>
+                        <h2>Authenticate Las Vegas escort agency</h2>
+                        <p>Undoubtedly many agencies offer escort services in Vegas. But the genuineness of such service providers is still under question. At least many clients who have taken services from them symbolize them in that way. You can feel yourself to be lucky if you have connected with an authenticated independent escort. But in other cases, clients come to us.</p>
+                        <p>We are one of the genuine service providers in Las Vegas offering the marvelous mode of satiation and exhilaration that clients search for. We always look for making your time in the Sin City awesome by providing an efficient touch. Just call us and we are on our way to offer you the most mesmerizing service.</p>
+                        <ul>
+                            <li>Our agency is considered to provide the best escort service Las Vegas.</li>
+                            <li>Our agency is considered to provide the best escort service Las Vegas.</li>
+                            <li>Our agency is considered to provide the best escort service Las Vegas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Text Content Section -->
+</main>
+
+
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById('loadMoreBtn');
+            const container = document.getElementById('escortContainer');
+            const loadText = document.getElementById('loadText');
+
+            let loadingInterval;
+
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                let skip = parseInt(btn.getAttribute('data-skip'));
+                const take = 12;
+
+                // Почати анімацію крапок
+                let dotCount = 0;
+                loadingInterval = setInterval(() => {
+                    dotCount = (dotCount + 1) % 4;
+                    loadText.textContent = "Load more" + '.'.repeat(dotCount);
+                }, 400);
+
+                fetch(`/Home/LoadMoreEscorts?skip=${skip}&take=${take}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.insertAdjacentHTML('beforeend', html);
+                        btn.setAttribute('data-skip', skip + take);
+                    })
+                    .finally(() => {
+                        clearInterval(loadingInterval);
+                        loadText.textContent = "Load more";
+                    });
+            });
+        });
+    </script>
+}
+

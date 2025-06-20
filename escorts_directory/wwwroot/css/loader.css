@@ -1,0 +1,48 @@
+﻿@keyframes dotsLoop {
+    0% {
+        content: "Load more";
+    }
+
+    25% {
+        content: "Load more.";
+    }
+
+    50% {
+        content: "Load more..";
+    }
+
+    75% {
+        content: "Load more...";
+    }
+
+    100% {
+        content: "Load more";
+    }
+}
+
+#loadText.loading::after {
+    content: "Load more";
+    animation: dotAnimation 1.5s steps(4, end) infinite;
+}
+
+@keyframes dotAnimation {
+    0% {
+        content: "Load more";
+    }
+
+    25% {
+        content: "Load more.";
+    }
+
+    50% {
+        content: "Load more..";
+    }
+
+    75% {
+        content: "Load more...";
+    }
+
+    100% {
+        content: "Load more";
+    }
+}
