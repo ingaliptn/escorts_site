@@ -1,5 +1,6 @@
 using escorts_directory.Models;
 using escorts_directory.Models.VM;
+using escorts_directory.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
@@ -9,16 +10,17 @@ namespace escorts_directory.Controllers
     public class HomeController : Controller
     {
 		private readonly IEscortService _escortService;
-		private readonly IMemoryCache _cache;
+        private readonly IMemoryCache _cache;
+        private readonly PhotoHelper _photoHelper;
+        public HomeController(IEscortService escortService, IMemoryCache cache, PhotoHelper photoHelper)
+        {
+            _escortService = escortService;
+            _cache = cache;
+            _photoHelper = photoHelper;
+        }
 
-		public HomeController(IEscortService escortService, IMemoryCache cache)
-		{
-			_escortService = escortService;
-			_cache = cache;
-		}
-
-		// Метод для отримання закешованого номеру телефону
-		public async Task<phoneNumber> GetCachedPhoneAsync()
+        // Метод для отримання закешованого номеру телефону
+        public async Task<phoneNumber> GetCachedPhoneAsync()
 		{
 			if (!_cache.TryGetValue("PhoneNumber", out phoneNumber phoneNum))
 			{
@@ -50,31 +52,45 @@ namespace escorts_directory.Controllers
 			ViewBag.banner = pageInfo.bodyText;
 			ViewBag.Page = pageInfo.pageLocation;
 		}
+
         [HttpGet]
         public async Task<IActionResult> LoadMoreEscorts(int skip = 0, int take = 12)
         {
             var escorts = await _escortService.GetEscortsAsync();
-            var chunk = escorts.Skip(skip).Take(take).ToList();
+            var chunk = escorts
+                .Skip(skip)
+                .Take(take)
+                .Select(e => new EscortWithPhoto
+                {
+                    Escort = e,
+                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                })
+                .ToList();
 
             return PartialView("_EscortCardsPartial", chunk);
         }
 
+
         public async Task<IActionResult> index()
         {
-			var escorts = await _escortService.GetEscortsAsync();
+            var escorts = await _escortService.GetEscortsAsync();
 
-			// Перші 4 — великі, решта — малі
-			var top4 = escorts.Take(4).ToList();
-			var others = escorts.Skip(4).ToList();
+            var escortsWithPhoto = escorts
+                .Select(e => new EscortWithPhoto
+                {
+                    Escort = e,
+                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                })
+                .ToList();
 
-			var model = new EscortsViewModel
-			{
-				Featured = top4,
-				Regular = others
-			};
+            var model = new EscortsViewModel
+            {
+                Featured = escortsWithPhoto.Take(4).ToList(),
+                Regular = escortsWithPhoto.Skip(4).ToList()
+            };
 
-			return View(model);
-		}
+            return View(model);
+        }
         public IActionResult about_us()
         {
             return View();

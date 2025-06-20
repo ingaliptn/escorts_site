@@ -2,7 +2,7 @@
 {
 	public class EscortsViewModel
 	{
-		public List<escorts> Featured { get; set; }
-		public List<escorts> Regular { get; set; }
-	}
+        public List<EscortWithPhoto> Featured { get; set; }
+        public List<EscortWithPhoto> Regular { get; set; }
+    }
 }

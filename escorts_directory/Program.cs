@@ -1,4 +1,5 @@
 using escorts_directory.Context;
+using escorts_directory.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<IEscortService, EscortService>();
+builder.Services.AddScoped<PhotoHelper>();
 
 var app = builder.Build();
 

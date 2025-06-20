@@ -1,29 +1,29 @@
-﻿@model List<escorts>
+﻿@using escorts_directory.Models.VM
+@model List<EscortWithPhoto>
 
 @foreach (var escort in Model)
 {
+    var e = escort.Escort;
     <div class="modelPhoto photoWith_review largeHeight">
         <figure class="modelPhoto-image-container">
-            <a asp-action="model_profile" asp-route-id="@escort.Id" class="modelPhoto-image">
-                <img src="/images/escorts/escort_@escort.Id+_1.jpg"
-                     onerror="this.onerror=null; this.src='/images/no-image.jpg';"
-                     alt="@escort.Name" />
+            <a asp-action="model_profile" asp-route-id="@e.Id" class="modelPhoto-image">
+                <img src="@escort.PhotoUrl" alt="@e.Name" />
             </a>
         </figure>
         <div class="modelPhoto-details desctionText_hide">
             <div class="modelTitle_Style vignetColor">
-                <p>@escort.LocationCity</p>
-                <h2><span>@escort.Name</span></h2>
+                <p>@e.LocationCity</p>
+                <h2><span>@e.Name</span></h2>
                 <div class="model_sortBiography_lists">
                     <ul>
-                        <li>Age: @escort.Age</li>
-                        <li>Height: @escort.HeightCm cm</li>
-                        <li>Body type: @escort.BustType</li>
-                        <li>Bust: @escort.BustSize</li>
-                        <li>Hair colour: @escort.HairColor</li>
-                        <li>Eye colour: @escort.Eyes</li>
+                        <li>Age: @e.Age</li>
+                        <li>Height: @e.HeightCm cm</li>
+                        <li>Body type: @e.BustType</li>
+                        <li>Bust: @e.BustSize</li>
+                        <li>Hair colour: @e.HairColor</li>
+                        <li>Eye colour: @e.Eyes</li>
                     </ul>
-                    <a asp-action="model_profile" asp-route-id="@escort.Id">Profile</a>
+                    <a asp-action="model_profile" asp-route-id="@e.Id">Profile</a>
                 </div>
             </div>
         </div>
