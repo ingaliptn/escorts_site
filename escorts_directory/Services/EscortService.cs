@@ -41,4 +41,15 @@ public class EscortService : IEscortService
     {
         return await _db.phoneNumber.FirstOrDefaultAsync();
     }
+    public async Task<List<string>> GetServicesByEscortIdAsync(int escortId)
+    {
+        return await _db.EscortServices
+            .Include(es => es.Service)
+            .Where(es => es.EscortId == escortId && es.IsIncluded)
+            .Select(es => es.Service.Name)
+            .ToListAsync();
+    }
+
+
+
 }

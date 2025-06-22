@@ -111,12 +111,41 @@ namespace escorts_directory.Controllers
         {
             return View();
         }
-        public IActionResult model_profile()
-        {
-            return View();
-        }
+		public async Task<IActionResult> model_profile(int id)
+		{
+			var escort = await _escortService.GetEscortByIdAsync(id);
+			if (escort == null) return NotFound();
 
-        public IActionResult Privacy()
+			var photoCount = _photoHelper.GetPhotoCount(escort.Name, escort.Id);
+
+			var model = new EscortProfileViewModel
+			{
+				Escort = escort,
+				PhotoCount = photoCount,
+				Services = await _escortService.GetServicesByEscortIdAsync(id),
+				RandomEscorts = (await _escortService.GetRandomEscortsAsync(6))
+					.Select(e => new EscortWithPhoto
+					{
+						Escort = e,
+						PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+					}).ToList()
+			};
+
+
+			var services = await _escortService.GetServicesByEscortIdAsync(id);
+			var random = (await _escortService.GetRandomEscortsAsync(6))
+				.Select(e => new EscortWithPhoto
+				{
+					Escort = e,
+					PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+				}).ToList();
+
+			return View(model);
+		}
+
+
+
+		public IActionResult Privacy()
         {
             return View();
         }

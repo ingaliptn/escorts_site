@@ -1,6 +1,12 @@
-﻿@{
+﻿@using escorts_directory.Models.VM
+@using escorts_directory.Services
+@model EscortProfileViewModel
+@inject PhotoHelper _photoHelper
+
+@{
 	Layout = "_Layout_Profile";
 }
+
 
 		<!--inner page banner-->
 		<section class="innerPage_headerBG" style="background:url('@Url.Content("~/images/bg_img/3.jpg")') center center;">
@@ -29,28 +35,38 @@
 					<div class="row">
 						<div class="col-lg-5">
 							<div class="personlInfo_Description">
-								<h2>About Leslie</h2>
+						<h2>About @Model.Escort.Name</h2>
+
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 							</div>
 
-							<div class="featured_model_carouslSection marginTopMinus modelSinglePhoto_preview">
-								<div class="featuresModle_bgOverlay">
-									<!--responsive profile slider-->
-									<ul class="rslides modelProfile_photoDisplay" id="modelProfile_slide">
-										<li><a href="~/images/model_photos/15.jpg" data-fancybox="modelProfile_photoss" data-caption="photo caption" type="button" class="modelPhoto-image"><img src="~/images/model_photos/15.jpg" alt=""></a></li>
-										<li><a href="~/images/model_photos/16.jpg" data-fancybox="modelProfile_photoss" data-caption="photo caption" type="button" class="modelPhoto-image"><img src="~/images/model_photos/16.jpg" alt=""></a></li>
-										<li><a href="~/images/model_photos/17.jpg" data-fancybox="modelProfile_photoss" data-caption="photo caption" type="button" class="modelPhoto-image"><img src="~/images/model_photos/17.jpg" alt=""></a></li>
-									</ul>
+					<div class="featured_model_carouslSection marginTopMinus modelSinglePhoto_preview">
+						<div class="featuresModle_bgOverlay">
+							<ul class="rslides modelProfile_photoDisplay" id="modelProfile_slide">
+								@for (int i = 1; i <= Model.PhotoCount; i++)
+								{
+									var photoPath = _photoHelper.GetProfilePhotoByIndex(Model.Escort.Name, Model.Escort.Id, i);
+									<li>
+										<a href="@photoPath" data-fancybox="modelProfile_photoss" class="modelPhoto-image">
+											<img src="@photoPath" alt="@Model.Escort.Name" />
+										</a>
+									</li>
+								}
 
-									<!-- Slideshow 3 Pager -->
-									<ul id="modelProfile_slide-pager">
-										<li><a href="~/#"><img src="~/images/model_photos/15.jpg" alt=""></a></li>
-										<li><a href="~/#"><img src="~/images/model_photos/16.jpg" alt=""></a></li>
-										<li><a href="~/#"><img src="~/images/model_photos/17.jpg" alt=""></a></li>
-									</ul>
-									<!--responsive profile slider-->
-								</div>
-							</div><!-- End .featured-proucts-section -->
+							</ul>
+
+							<ul id="modelProfile_slide-pager">
+								@for (int i = 1; i <= Model.PhotoCount; i++)
+								{
+									var thumbPath = _photoHelper.GetProfilePhotoByIndex(Model.Escort.Name, Model.Escort.Id, i);
+									<li>
+										<a href="#"><img src="@thumbPath" alt="thumb" /></a>
+									</li>
+								}
+
+							</ul>
+						</div>
+					</div>
 						</div>
 						<div class="col-lg-7">
 							<div class="pageTop_descriptionText">
@@ -60,27 +76,28 @@
 
 										<div class="personalDetails_block">
 											<!--Personal Info-->
-											<div class="personalCharacteristic_Info modelFigure_info informationTwoCol">
-												<div class="BlockIcon">
-													<i class="fa fa-info-circle" aria-hidden="true"></i>
-													<h3>Personal Information</h3>
-												</div>
-												<div class="ModelInfo_Details">
-													<ul>
-														<li>Name: <span>Leslie</span></li>
-														<li>Age: <span>23</span></li>
-														<li>Height: <span>5'5</span></li>
-														<li>Weight: <span>123 lbs</span></li>
-														<li>Bust: <span>B-Cup</span></li>
-														<li>Hair: <span>Black</span></li>
-														<li>Eyes: <span>Black</span></li>
-														<li>Language: <span>English</span></li>
-														<li>Gender: <span>Female</span></li>
-														<li>Available To: <span>Men, Couples, Female, TS</span></li>
-														<li>Availability: <span>On all girls</span></li>
-													</ul>
-												</div>
-											</div>
+									<div class="personalCharacteristic_Info modelFigure_info informationTwoCol">
+										<div class="BlockIcon">
+											<i class="fa fa-info-circle" aria-hidden="true"></i>
+											<h3>Personal Information</h3>
+										</div>
+										<div class="ModelInfo_Details">
+											<ul>
+												<li>Name: <span>@Model.Escort.Name</span></li>
+												<li>Age: <span>@Model.Escort.Age</span></li>
+												<li>Height: <span>@Model.Escort.HeightCm cm</span></li>
+												<li>Weight: <span>@Model.Escort.WeightKg kg</span></li>
+												<li>Bust: <span>@Model.Escort.BustSize</span></li>
+												@* <li>Body type: <span>@Model.Escort.BustType</span></li> *@
+												<li>Hair: <span>@Model.Escort.HairColor</span></li>
+												<li>Eyes: <span>@Model.Escort.Eyes</span></li>
+												<li>Language: <span>@Model.Escort.Languages</span></li>
+												<li>Gender: <span>@Model.Escort.Gender</span></li>
+												<li>Available To: <span>@Model.Escort.MeetingWith</span></li>
+												<li>Availability: <span>@Model.Escort.AvailableFor</span></li>
+											</ul>
+										</div>
+									</div>
 
 											<div class="row">
 												<div class="col-lg-6">
@@ -197,41 +214,33 @@
 												</div>
 												<div class="col-lg-6">
 													<!--rates Info-->
-													<div class="personalCharacteristic_Info modelFigure_info">
-														<div class="BlockIcon">
-															<i class="fa fa-info-circle" aria-hidden="true"></i>
-															<h3>Services</h3>
-														</div>
-														<div class="ModelInfo_Details">
-															<ul>
-																<li class="servicesTitleRow">Services <div class="profileRow_info"><span class="secondCol">Included</span><span>Extra</span></div></li>
-																<li>69 Position  <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Classic varinal sex <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Cum in mouth <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Cum on body <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Cunnilingus <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Deepthroat <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Dirty talk <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Erotic massage <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Figering <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Foot fetish <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>GFE <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Handjob <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Kamasutra <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Masturbation <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Oral without condom <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Porn Star Experience <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Sex between breasts <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Sex Toys <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Squirting <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Striptease <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Anal <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Erotic Photos <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Role-play <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-																<li>Uniforms <div class="profileRow_info"><span class="secondCol"><i class="fa fa-check"></i></span> <span></span></div></li>
-															</ul>
-														</div>
-													</div>
+											<div class="personalCharacteristic_Info modelFigure_info">
+												<div class="BlockIcon">
+													<i class="fa fa-info-circle" aria-hidden="true"></i>
+													<h3>Services</h3>
+												</div>
+												<div class="ModelInfo_Details">
+													<ul>
+														<li class="servicesTitleRow">
+															Services
+															<div class="profileRow_info">
+																<span class="secondCol">Included</span>
+																<span>Extra</span>
+															</div>
+														</li>
+														@foreach (var service in Model.Services)
+														{
+															<li>
+																@service
+																<div class="profileRow_info">
+																	<span class="secondCol"><i class="fa fa-check"></i></span>
+																	<span></span>
+																</div>
+															</li>
+														}
+													</ul>
+												</div>
+											</div>
 													<!--end rates Info-->
 												</div>
 											</div>
@@ -258,157 +267,35 @@
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 						</div>
 						<div class="carousel-section">
-							<div class="featuredModel_carousel regularModel_gridList owlControl_Panel Nav_Inner_LeftRight navOn_hover owl-carousel">
-								<div class="modelPhoto photoWith_review largeHeight">
-									<figure class="modelPhoto-image-container">
-										<a href="model_profile.html" class="modelPhoto-image">
-											<img src="~/images/model_photos/1.jpg" alt="">
-										</a>
-									</figure>
-									<div class="modelPhoto-details desctionText_hide">
-										<div class="modelTitle_Style vignetColor">
-											<p>Sydney</p>
-											<h2><span>Alina Volkova</span></h2>
-											<div class="model_sortBiography_lists">
-												<ul>
-													<li>Age: 36</li>
-													<li>Height: 157cm</li>
-													<li>Body type: Busty</li>
-													<li>Bust: G and above</li>
-													<li>Hair colour: Blonde</li>
-													<li>Eye colour: Blue Green mix</li>
-												</ul>
-												<a href="#">Profile</a>
-											</div>
+					<div class="featuredModel_carousel regularModel_gridList owlControl_Panel Nav_Inner_LeftRight navOn_hover owl-carousel">
+						@foreach (var escort in Model.RandomEscorts)
+						{
+							<div class="modelPhoto photoWith_review largeHeight">
+								<figure class="modelPhoto-image-container">
+									<a href="@Url.Action("model_profile", "Home", new { id = escort.Escort.Id })" class="modelPhoto-image">
+										<img src="@escort.PhotoUrl" alt="@escort.Escort.Name">
+									</a>
+								</figure>
+								<div class="modelPhoto-details desctionText_hide">
+									<div class="modelTitle_Style vignetColor">
+										<p>@escort.Escort.LocationCity</p>
+										<h2><span>@escort.Escort.Name</span></h2>
+										<div class="model_sortBiography_lists">
+											<ul>
+												<li>Age: @escort.Escort.Age</li>
+												<li>Height: @escort.Escort.HeightCm cm</li>
+												<li>Body type: @escort.Escort.BustType</li>
+												<li>Bust: @escort.Escort.BustSize</li>
+												<li>Hair colour: @escort.Escort.HairColor</li>
+												<li>Eye colour: @escort.Escort.Eyes</li>
+											</ul>
+											<a href="@Url.Action("model_profile", "Home", new { id = escort.Escort.Id })">Profile</a>
 										</div>
-									</div><!-- End .modelPhoto-details -->
-								</div><!-- End .modelPhoto -->
-
-								<div class="modelPhoto photoWith_review largeHeight">
-									<figure class="modelPhoto-image-container">
-										<a href="model_profile.html" class="modelPhoto-image">
-											<img src="~/images/model_photos/1.jpg" alt="">
-										</a>
-									</figure>
-									<div class="modelPhoto-details desctionText_hide">
-										<div class="modelTitle_Style vignetColor">
-											<p>Sydney</p>
-											<h2><span>Alina Volkova</span></h2>
-											<div class="model_sortBiography_lists">
-												<ul>
-													<li>Age: 36</li>
-													<li>Height: 157cm</li>
-													<li>Body type: Busty</li>
-													<li>Bust: G and above</li>
-													<li>Hair colour: Blonde</li>
-													<li>Eye colour: Blue Green mix</li>
-												</ul>
-												<a href="~/#">Profile</a>
-											</div>
-										</div>
-									</div><!-- End .modelPhoto-details -->
-								</div><!-- End .modelPhoto -->
-
-								<div class="modelPhoto photoWith_review largeHeight">
-									<figure class="modelPhoto-image-container">
-										<a href="~/model_profile.html" class="modelPhoto-image">
-											<img src="~/images/model_photos/1.jpg" alt="">
-										</a>
-									</figure>
-									<div class="modelPhoto-details desctionText_hide">
-										<div class="modelTitle_Style vignetColor">
-											<p>Sydney</p>
-											<h2><span>Alina Volkova</span></h2>
-											<div class="model_sortBiography_lists">
-												<ul>
-													<li>Age: 36</li>
-													<li>Height: 157cm</li>
-													<li>Body type: Busty</li>
-													<li>Bust: G and above</li>
-													<li>Hair colour: Blonde</li>
-													<li>Eye colour: Blue Green mix</li>
-												</ul>
-												<a href="~/#">Profile</a>
-											</div>
-										</div>
-									</div><!-- End .modelPhoto-details -->
-								</div><!-- End .modelPhoto -->
-
-								<div class="modelPhoto photoWith_review largeHeight">
-									<figure class="modelPhoto-image-container">
-										<a href="~/model_profile.html" class="modelPhoto-image">
-											<img src="~/images/model_photos/1.jpg" alt="">
-										</a>
-									</figure>
-									<div class="modelPhoto-details desctionText_hide">
-										<div class="modelTitle_Style vignetColor">
-											<p>Sydney</p>
-											<h2><span>Alina Volkova</span></h2>
-											<div class="model_sortBiography_lists">
-												<ul>
-													<li>Age: 36</li>
-													<li>Height: 157cm</li>
-													<li>Body type: Busty</li>
-													<li>Bust: G and above</li>
-													<li>Hair colour: Blonde</li>
-													<li>Eye colour: Blue Green mix</li>
-												</ul>
-												<a href="~/#">Profile</a>
-											</div>
-										</div>
-									</div><!-- End .modelPhoto-details -->
-								</div><!-- End .modelPhoto -->
-
-								<div class="modelPhoto photoWith_review largeHeight">
-									<figure class="modelPhoto-image-container">
-										<a href="~/model_profile.html" class="modelPhoto-image">
-											<img src="~/images/model_photos/1.jpg" alt="">
-										</a>
-									</figure>
-									<div class="modelPhoto-details desctionText_hide">
-										<div class="modelTitle_Style vignetColor">
-											<p>Sydney</p>
-											<h2><span>Alina Volkova</span></h2>
-											<div class="model_sortBiography_lists">
-												<ul>
-													<li>Age: 36</li>
-													<li>Height: 157cm</li>
-													<li>Body type: Busty</li>
-													<li>Bust: G and above</li>
-													<li>Hair colour: Blonde</li>
-													<li>Eye colour: Blue Green mix</li>
-												</ul>
-												<a href="~/#">Profile</a>
-											</div>
-										</div>
-									</div><!-- End .modelPhoto-details -->
-								</div><!-- End .modelPhoto -->
-
-								<div class="modelPhoto photoWith_review largeHeight">
-									<figure class="modelPhoto-image-container">
-										<a href="~/model_profile.html" class="modelPhoto-image">
-											<img src="~/images/model_photos/1.jpg" alt="">
-										</a>
-									</figure>
-									<div class="modelPhoto-details desctionText_hide">
-										<div class="modelTitle_Style vignetColor">
-											<p>Sydney</p>
-											<h2><span>Alina Volkova</span></h2>
-											<div class="model_sortBiography_lists">
-												<ul>
-													<li>Age: 36</li>
-													<li>Height: 157cm</li>
-													<li>Body type: Busty</li>
-													<li>Bust: G and above</li>
-													<li>Hair colour: Blonde</li>
-													<li>Eye colour: Blue Green mix</li>
-												</ul>
-												<a href="~/#">Profile</a>
-											</div>
-										</div>
-									</div><!-- End .modelPhoto-details -->
-								</div><!-- End .modelPhoto -->
-							</div><!-- End .featured-proucts -->
+									</div>
+								</div>
+							</div>
+						}
+					</div>
 						</div>
 					</div><!-- End .container -->
 				</div>
