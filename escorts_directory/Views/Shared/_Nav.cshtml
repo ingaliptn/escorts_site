@@ -1,4 +1,6 @@
-﻿<!--Nav Box-->
+﻿
+
+<!--Nav Box-->
 <div class="nav-outer">
 	<!-- Main Menu -->
 	<nav class="navigation_combo navbar-expand-md navbar-light">
@@ -98,45 +100,12 @@
 				<li><a asp-action="about_us"><i class="fa fa-heart"></i><span>ABOUT US</span></a></li>
 				<li class="dropdown has-mega-menu">
 					<a href="javascript:void(0)"><i class="fa fa-search"></i><span>SEARCH</span></a>
-					<div class="mega-menu" data-width="1110px">
+					<div class="mega-menu search-panel" data-width="1110px">
 						<div class="mega-menu-bar">
 							<div Class="filterSearch_field">
-								<form method="post" action="">
-									<div class="row">
-										<div class="form-group column col-lg-3 col-md-3 col-sm-12">
-											<div class="form-group">
-												<select class="customField_design" type="selectState" name="search-state">
-													<option value="0">Select State</option>
-													<option value="1">Los Angles</option>
-													<option value="2">Naveda</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group column col-lg-3 col-md-3 col-sm-12">
-											<div class="form-group">
-												<select class="customField_design" type="selectCity" name="search-city">
-													<option value="0">Select City</option>
-													<option value="1">Las Vegas</option>
-													<option value="2">Henderson</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group column col-lg-3 col-md-3 col-sm-12">
-											<div class="form-group">
-												<select class="customField_design" type="searchGender" name="search-gender">
-													<option value="0">Select Gender</option>
-													<option value="1">Male</option>
-													<option value="2">Female</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group column col-lg-3 col-md-3 col-sm-12">
-											<div class="form-group searchBtnVisible">
-												<button type="submit" class="searchBtn"><i class="fa fa-search"></i> Find</button>
-											</div>
-										</div>
-									</div>
-								</form>
+								@await Component.InvokeAsync("SearchForm")
+
+								
 							</div>
 						</div>
 					</div>
@@ -147,3 +116,5 @@
 	</nav>
 	<!-- Main Menu End-->
 </div>
+
+

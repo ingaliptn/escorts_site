@@ -18,6 +18,28 @@ font-family: "Roboto", sans-serif; */
 p::-moz-selection {background:#671346; color:#ffffff;}
 p::selection {background:#671346; color:#ffffff;}
 
+
+/*#fullScreenVideo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.sliderBanner_section {
+	position: relative;
+	height: 80vh;
+	overflow: hidden;*/ /* важливо */
+/*}
+
+.video-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;*/ /* щоб було позаду інших елементів */
+/*}*/
+
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #671346;
 }

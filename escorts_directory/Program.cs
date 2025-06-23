@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<IEscortService, EscortService>();
 builder.Services.AddScoped<PhotoHelper>();
+builder.Services.AddSingleton<LocationDataService>();
 
 var app = builder.Build();
 

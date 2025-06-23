@@ -4,301 +4,301 @@
 @inject PhotoHelper _photoHelper
 
 @{
-	Layout = "_Layout_Profile";
+    Layout = "_Layout_Profile";
 }
 
 
-		<!--inner page banner-->
-		<section class="innerPage_headerBG" style="background:url('@Url.Content("~/images/bg_img/3.jpg")') center center;">
-			<div class="container">
-				<h1>VIP Escorts</h1>
-				<div class="breadcum_block">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page">VIP Escorts</li>
-					</ol>
-				</div>
-			</div>
-			<div class="sliderBanner_Overlay"></div>
-		</section>
-		<!--end inner page banner-->
+<!--inner page banner-->
+<section class="innerPage_headerBG" style="background:url('@Url.Content("~/images/bg_img/3.jpg")') center center;">
+    <div class="container">
+        <h1>VIP Escorts</h1>
+        <div class="breadcum_block">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">VIP Escorts</li>
+            </ol>
+        </div>
+    </div>
+    <div class="sliderBanner_Overlay"></div>
+</section>
+<!--end inner page banner-->
 
-		<main class="main_container_wrapper inner_pageContainer">
-			<!--
-			<div id="profileContactNo" class="modelProfile_contactNoBox onScrollHide">
-				<a href="tel:+1-702-381-6357"><i class="fa fa-phone"></i> Call Me: +1-702-381-6357</a>
-			</div>-->
+<main class="main_container_wrapper inner_pageContainer">
+    <!--
+    <div id="profileContactNo" class="modelProfile_contactNoBox onScrollHide">
+        <a href="tel:+1-702-381-6357"><i class="fa fa-phone"></i> Call Me: +1-702-381-6357</a>
+    </div>-->
 
-			<section id="section_block" class="container_block_section modelPersonal_information">
-				<div class="container">
+    <section id="section_block" class="container_block_section modelPersonal_information">
+        <div class="container">
 
-					<div class="row">
-						<div class="col-lg-5">
-							<div class="personlInfo_Description">
-						<h2>About @Model.Escort.Name</h2>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="personlInfo_Description">
+                        <h2>About @Model.Escort.Name</h2>
 
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-							</div>
+                        <p>@Html.Raw(Model.Escort.Description)</p>
+                    </div>
 
-					<div class="featured_model_carouslSection marginTopMinus modelSinglePhoto_preview">
-						<div class="featuresModle_bgOverlay">
-							<ul class="rslides modelProfile_photoDisplay" id="modelProfile_slide">
-								@for (int i = 1; i <= Model.PhotoCount; i++)
-								{
-									var photoPath = _photoHelper.GetProfilePhotoByIndex(Model.Escort.Name, Model.Escort.Id, i);
-									<li>
-										<a href="@photoPath" data-fancybox="modelProfile_photoss" class="modelPhoto-image">
-											<img src="@photoPath" alt="@Model.Escort.Name" />
-										</a>
-									</li>
-								}
+                    <div class="featured_model_carouslSection marginTopMinus modelSinglePhoto_preview">
+                        <div class="featuresModle_bgOverlay">
+                            <ul class="rslides modelProfile_photoDisplay" id="modelProfile_slide">
+                                @for (int i = 1; i <= Model.PhotoCount; i++)
+                                {
+                                    var photoPath = _photoHelper.GetProfilePhotoByIndex(Model.Escort.Name, Model.Escort.Id, i);
+                                    <li>
+                                        <a href="@photoPath" data-fancybox="modelProfile_photoss" class="modelPhoto-image">
+                                            <img src="@photoPath" alt="@Model.Escort.Name" />
+                                        </a>
+                                    </li>
+                                }
 
-							</ul>
+                            </ul>
 
-							<ul id="modelProfile_slide-pager">
-								@for (int i = 1; i <= Model.PhotoCount; i++)
-								{
-									var thumbPath = _photoHelper.GetProfilePhotoByIndex(Model.Escort.Name, Model.Escort.Id, i);
-									<li>
-										<a href="#"><img src="@thumbPath" alt="thumb" /></a>
-									</li>
-								}
+                            <ul id="modelProfile_slide-pager">
+                                @for (int i = 1; i <= Model.PhotoCount; i++)
+                                {
+                                    var thumbPath = _photoHelper.GetProfilePhotoByIndex(Model.Escort.Name, Model.Escort.Id, i);
+                                    <li>
+                                        <a href="#"><img src="@thumbPath" alt="thumb" /></a>
+                                    </li>
+                                }
 
-							</ul>
-						</div>
-					</div>
-						</div>
-						<div class="col-lg-7">
-							<div class="pageTop_descriptionText">
-								<div class="ProfileInfo_Figure_table">
-									<div class="ProfileInfo_NewStyle">
-										<!-- <h2>Personal Details</h2> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="pageTop_descriptionText">
+                        <div class="ProfileInfo_Figure_table">
+                            <div class="ProfileInfo_NewStyle">
+                                <!-- <h2>Personal Details</h2> -->
 
-										<div class="personalDetails_block">
-											<!--Personal Info-->
-									<div class="personalCharacteristic_Info modelFigure_info informationTwoCol">
-										<div class="BlockIcon">
-											<i class="fa fa-info-circle" aria-hidden="true"></i>
-											<h3>Personal Information</h3>
-										</div>
-										<div class="ModelInfo_Details">
-											<ul>
-												<li>Name: <span>@Model.Escort.Name</span></li>
-												<li>Age: <span>@Model.Escort.Age</span></li>
-												<li>Height: <span>@Model.Escort.HeightCm cm</span></li>
-												<li>Weight: <span>@Model.Escort.WeightKg kg</span></li>
-												<li>Bust: <span>@Model.Escort.BustSize</span></li>
-												@* <li>Body type: <span>@Model.Escort.BustType</span></li> *@
-												<li>Hair: <span>@Model.Escort.HairColor</span></li>
-												<li>Eyes: <span>@Model.Escort.Eyes</span></li>
-												<li>Language: <span>@Model.Escort.Languages</span></li>
-												<li>Gender: <span>@Model.Escort.Gender</span></li>
-												<li>Available To: <span>@Model.Escort.MeetingWith</span></li>
-												<li>Availability: <span>@Model.Escort.AvailableFor</span></li>
-											</ul>
-										</div>
-									</div>
+                                <div class="personalDetails_block">
+                                    <!--Personal Info-->
+                                    <div class="personalCharacteristic_Info modelFigure_info informationTwoCol">
+                                        <div class="BlockIcon">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            <h3>Personal Information</h3>
+                                        </div>
+                                        <div class="ModelInfo_Details">
+                                            <ul>
+                                                <li>Name: <span>@Model.Escort.Name</span></li>
+                                                <li>Age: <span>@Model.Escort.Age</span></li>
+                                                <li>Height: <span>@Model.Escort.HeightCm cm</span></li>
+                                                <li>Weight: <span>@Model.Escort.WeightKg kg</span></li>
+                                                <li>Bust: <span>@Model.Escort.BustSize</span></li>
+                                                @* <li>Body type: <span>@Model.Escort.BustType</span></li> *@
+                                                <li>Hair: <span>@Model.Escort.HairColor</span></li>
+                                                <li>Eyes: <span>@Model.Escort.Eyes</span></li>
+                                                <li>Language: <span>@Model.Escort.Languages</span></li>
+                                                <li>Gender: <span>@Model.Escort.Gender</span></li>
+                                                <li>Available To: <span>@Model.Escort.MeetingWith</span></li>
+                                                <li>Availability: <span>@Model.Escort.AvailableFor</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
 
-											<div class="row">
-												<div class="col-lg-6">
-													<!--Phone-->
-													<div class="personalCharacteristic_Info modelBooking_info phoneEmailStyle contactInfo_block">
-														<div class="BlockIcon">
-															<i class="fa fa-phone-square"></i>
-															<h3>Contact</h3>
-														</div>
-														<div class="ModelInfo_Details">
-															<ul>
-																<li><a href="tel:702-935-5311" style="font-size:1.05rem;"><i class="fa fa-phone-square"></i><strong>Cell Phone: </strong> 702-9XX-XXXX <!--<i class="fa fa-eye"></i>--></a></li>
-																<li><a href="#" style="font-size:1.05rem;"><i class="fa fa-thumb-tack"></i><strong>Location: </strong>  Dallas</a></li>
-																<li><a href="#" style="font-size:1.05rem;"><i class="fa fa-globe"></i><strong>Country: </strong>  Swizerland</a></li>
-																<li><a href="#" style="font-size:1.05rem;"><i class="fa fa-building"></i><strong>City: </strong>  Zurich</a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <!--Phone-->
+                                            <div class="personalCharacteristic_Info modelBooking_info phoneEmailStyle contactInfo_block">
+                                                <div class="BlockIcon">
+                                                    <i class="fa fa-phone-square"></i>
+                                                    <h3>Contact</h3>
+                                                </div>
+                                                <div class="ModelInfo_Details">
+                                                    <ul>
+                                                        <li><a href="tel:702-935-5311" style="font-size:1.05rem;"><i class="fa fa-phone-square"></i><strong>Cell Phone: </strong> 702-9XX-XXXX <!--<i class="fa fa-eye"></i>--></a></li>
+                                                        <li><a href="#" style="font-size:1.05rem;"><i class="fa fa-thumb-tack"></i><strong>Location: </strong>  Dallas</a></li>
+                                                        <li><a href="#" style="font-size:1.05rem;"><i class="fa fa-globe"></i><strong>Country: </strong>  Swizerland</a></li>
+                                                        <li><a href="#" style="font-size:1.05rem;"><i class="fa fa-building"></i><strong>City: </strong>  Zurich</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
 
-												<div class="col-lg-6">
-													<div class="profileContactBtn phoneEmailStyle">
-														<a href="7029355311" class="phoneNoStyle"><i class="fa fa-phone-square"></i> 702-935-5311</a>
-													</div>
-													<div class="profileContactBtn phoneEmailStyle">
-														<a href="mailto:info@example.com" class="emailAddressStyle"><i class="fa fa-envelope"></i> info@example.com</a>
-													</div>
-													<div class="profileContactBtn phoneEmailStyle">
-														<a href="mailto:info@example.com" class="bookingAppointmentStyle"><i class="fa fa-check-circle"></i> Booking an appointment</a>
-													</div>
-												</div>
+                                        <div class="col-lg-6">
+                                            <div class="profileContactBtn phoneEmailStyle">
+                                                <a href="7029355311" class="phoneNoStyle"><i class="fa fa-phone-square"></i> 702-935-5311</a>
+                                            </div>
+                                            <div class="profileContactBtn phoneEmailStyle">
+                                                <a href="mailto:info@example.com" class="emailAddressStyle"><i class="fa fa-envelope"></i> info@example.com</a>
+                                            </div>
+                                            <div class="profileContactBtn phoneEmailStyle">
+                                                <a href="mailto:info@example.com" class="bookingAppointmentStyle"><i class="fa fa-check-circle"></i> Booking an appointment</a>
+                                            </div>
+                                        </div>
 
-												<div class="col-lg-6 d-none">
-													<!--Email-->
-													<div class="personalCharacteristic_Info modelBooking_info phoneEmailStyle d-none">
-														<div class="BlockIcon">
-															<i class="fa fa-envelope"></i>
-															<h3>Email</h3>
-														</div>
-														<div class="ModelInfo_Details">
-															<ul>
-																<li><a href="mailto:anissausa@gmail.com" style="font-size:1.05rem;">leslie@gmail.com</a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-12 d-none">
-													<!--Email-->
-													<div class="personalCharacteristic_Info compalinProfileBlock">
-														<div class="BlockIcon">
-															<h3>Complain</h3>
-														</div>
-														<div class="ModelInfo_Details">
-															<ul>
-																<li><a href="#"><i class="fa fa-link" style="margin-right:5px;"></i> View Direct Link</a></li>
-																<li><a href="#"><i class="fa fa-warning" style="margin-right:5px;"></i> Report Fake Ad</a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row d-none">
-												<div class="col-lg-6">
-													<div class="profileContactBtn phoneEmailStyle">
-														<a href="7029355311" class="phoneNoStyle"><i class="fa fa-phone-square"></i> 702-935-5311</a>
-													</div>
-												</div>
-												<div class="col-lg-6">
-													<div class="profileContactBtn phoneEmailStyle">
-														<a href="mailto:info@example.com" class="emailAddressStyle"><i class="fa fa-envelope"></i> info@example.com</a>
-													</div>
-												</div>
-											</div>
+                                        <div class="col-lg-6 d-none">
+                                            <!--Email-->
+                                            <div class="personalCharacteristic_Info modelBooking_info phoneEmailStyle d-none">
+                                                <div class="BlockIcon">
+                                                    <i class="fa fa-envelope"></i>
+                                                    <h3>Email</h3>
+                                                </div>
+                                                <div class="ModelInfo_Details">
+                                                    <ul>
+                                                        <li><a href="mailto:anissausa@gmail.com" style="font-size:1.05rem;">leslie@gmail.com</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 d-none">
+                                            <!--Email-->
+                                            <div class="personalCharacteristic_Info compalinProfileBlock">
+                                                <div class="BlockIcon">
+                                                    <h3>Complain</h3>
+                                                </div>
+                                                <div class="ModelInfo_Details">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-link" style="margin-right:5px;"></i> View Direct Link</a></li>
+                                                        <li><a href="#"><i class="fa fa-warning" style="margin-right:5px;"></i> Report Fake Ad</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-none">
+                                        <div class="col-lg-6">
+                                            <div class="profileContactBtn phoneEmailStyle">
+                                                <a href="7029355311" class="phoneNoStyle"><i class="fa fa-phone-square"></i> 702-935-5311</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="profileContactBtn phoneEmailStyle">
+                                                <a href="mailto:info@example.com" class="emailAddressStyle"><i class="fa fa-envelope"></i> info@example.com</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-											<div class="row">
-												<div class="col-lg-6">
-													<!--working time Info-->
-													<div class="personalCharacteristic_Info modelFigure_info">
-														<div class="BlockIcon">
-															<i class="fa fa-info-circle" aria-hidden="true"></i>
-															<h3>Working Time</h3>
-														</div>
-														<div class="ModelInfo_Details">
-															<ul>
-																<li>Monday <span>07:00 - 22:00</span></li>
-																<li>Tuesday <span>07:00 - 22:00</span></li>
-																<li>Wednesday <span>07:00 - 22:00</span></li>
-																<li>Thursday <span>07:00 - 22:00</span></li>
-																<li>Friday <span>07:00 - 22:00</span></li>
-																<li>Saturday <span>07:00 - 22:00</span></li>
-																<li>Sunday <span>07:00 - 22:00</span></li>
-															</ul>
-														</div>
-													</div>
-													<!--end working time Info-->
-													<!--rates Info-->
-													<div class="personalCharacteristic_Info modelFigure_info">
-														<div class="BlockIcon">
-															<i class="fa fa-info-circle" aria-hidden="true"></i>
-															<h3>Rates</h3>
-														</div>
-														<div class="ModelInfo_Details">
-															<ul>
-																<li class="servicesTitleRow">Time <div class="profileRow_info"><span class="secondCol">InCall</span><span>Outcall</span></div></li>
-																<li>1 Hour  <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>600 USD</span></div></li>
-																<li>2 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>900 USD</span></div></li>
-																<li>3 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>1200 USD</span></div></li>
-																<li>6 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>1800 USD</span></div></li>
-																<li>12 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>3000 USD</span></div></li>
-															</ul>
-														</div>
-													</div>
-													<!--end rates Info-->
-												</div>
-												<div class="col-lg-6">
-													<!--rates Info-->
-											<div class="personalCharacteristic_Info modelFigure_info">
-												<div class="BlockIcon">
-													<i class="fa fa-info-circle" aria-hidden="true"></i>
-													<h3>Services</h3>
-												</div>
-												<div class="ModelInfo_Details">
-													<ul>
-														<li class="servicesTitleRow">
-															Services
-															<div class="profileRow_info">
-																<span class="secondCol">Included</span>
-																<span>Extra</span>
-															</div>
-														</li>
-														@foreach (var service in Model.Services)
-														{
-															<li>
-																@service
-																<div class="profileRow_info">
-																	<span class="secondCol"><i class="fa fa-check"></i></span>
-																	<span></span>
-																</div>
-															</li>
-														}
-													</ul>
-												</div>
-											</div>
-													<!--end rates Info-->
-												</div>
-											</div>
-
-
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <!--working time Info-->
+                                            <div class="personalCharacteristic_Info modelFigure_info">
+                                                <div class="BlockIcon">
+                                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                    <h3>Working Time</h3>
+                                                </div>
+                                                <div class="ModelInfo_Details">
+                                                    <ul>
+                                                        <li>Monday <span>07:00 - 22:00</span></li>
+                                                        <li>Tuesday <span>07:00 - 22:00</span></li>
+                                                        <li>Wednesday <span>07:00 - 22:00</span></li>
+                                                        <li>Thursday <span>07:00 - 22:00</span></li>
+                                                        <li>Friday <span>07:00 - 22:00</span></li>
+                                                        <li>Saturday <span>07:00 - 22:00</span></li>
+                                                        <li>Sunday <span>07:00 - 22:00</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!--end working time Info-->
+                                            <!--rates Info-->
+                                            <div class="personalCharacteristic_Info modelFigure_info">
+                                                <div class="BlockIcon">
+                                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                    <h3>Rates</h3>
+                                                </div>
+                                                <div class="ModelInfo_Details">
+                                                    <ul>
+                                                        <li class="servicesTitleRow">Time <div class="profileRow_info"><span class="secondCol">InCall</span><span>Outcall</span></div></li>
+                                                        <li>1 Hour  <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>600 USD</span></div></li>
+                                                        <li>2 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>900 USD</span></div></li>
+                                                        <li>3 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>1200 USD</span></div></li>
+                                                        <li>6 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>1800 USD</span></div></li>
+                                                        <li>12 Hours <div class="profileRow_info"><span class="secondCol"><i class="fa fa-times"></i></span> <span>3000 USD</span></div></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!--end rates Info-->
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <!--rates Info-->
+                                            <div class="personalCharacteristic_Info modelFigure_info">
+                                                <div class="BlockIcon">
+                                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                    <h3>Services</h3>
+                                                </div>
+                                                <div class="ModelInfo_Details">
+                                                    <ul>
+                                                        <li class="servicesTitleRow">
+                                                            Services
+                                                            <div class="profileRow_info">
+                                                                <span class="secondCol">Included</span>
+                                                                <span>Extra</span>
+                                                            </div>
+                                                        </li>
+                                                        @foreach (var service in Model.Services)
+                                                        {
+                                                            <li>
+                                                                @service
+                                                                <div class="profileRow_info">
+                                                                    <span class="secondCol"><i class="fa fa-check"></i></span>
+                                                                    <span></span>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!--end rates Info-->
+                                        </div>
+                                    </div>
 
 
 
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
 
 
-			<section class="featured_model_carouslSection model_listGridSection recommanded_girlsCarousel">
-				<div class="featuresModle_bgOverlay">
-					<div class="container">
-						<div class="sectionTitle_block text_align_center">
-							<h2>Recommanded Escorts</h2>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-						</div>
-						<div class="carousel-section">
-					<div class="featuredModel_carousel regularModel_gridList owlControl_Panel Nav_Inner_LeftRight navOn_hover owl-carousel">
-						@foreach (var escort in Model.RandomEscorts)
-						{
-							<div class="modelPhoto photoWith_review largeHeight">
-								<figure class="modelPhoto-image-container">
-									<a href="@Url.Action("model_profile", "Home", new { id = escort.Escort.Id })" class="modelPhoto-image">
-										<img src="@escort.PhotoUrl" alt="@escort.Escort.Name">
-									</a>
-								</figure>
-								<div class="modelPhoto-details desctionText_hide">
-									<div class="modelTitle_Style vignetColor">
-										<p>@escort.Escort.LocationCity</p>
-										<h2><span>@escort.Escort.Name</span></h2>
-										<div class="model_sortBiography_lists">
-											<ul>
-												<li>Age: @escort.Escort.Age</li>
-												<li>Height: @escort.Escort.HeightCm cm</li>
-												<li>Body type: @escort.Escort.BustType</li>
-												<li>Bust: @escort.Escort.BustSize</li>
-												<li>Hair colour: @escort.Escort.HairColor</li>
-												<li>Eye colour: @escort.Escort.Eyes</li>
-											</ul>
-											<a href="@Url.Action("model_profile", "Home", new { id = escort.Escort.Id })">Profile</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						}
-					</div>
-						</div>
-					</div><!-- End .container -->
-				</div>
-			</section><!-- End .featured-proucts-section -->
-		</main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="featured_model_carouslSection model_listGridSection recommanded_girlsCarousel">
+        <div class="featuresModle_bgOverlay">
+            <div class="container">
+                <div class="sectionTitle_block text_align_center">
+                    <h2>Recommanded Escorts</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+                <div class="carousel-section">
+                    <div class="featuredModel_carousel regularModel_gridList owlControl_Panel Nav_Inner_LeftRight navOn_hover owl-carousel">
+                        @foreach (var escort in Model.RandomEscorts)
+                        {
+                            <div class="modelPhoto photoWith_review largeHeight">
+                                <figure class="modelPhoto-image-container">
+                                    <a href="@Url.Action("model_profile", "Home", new { id = escort.Escort.Id })" class="modelPhoto-image">
+                                        <img src="@escort.PhotoUrl" alt="@escort.Escort.Name">
+                                    </a>
+                                </figure>
+                                <div class="modelPhoto-details desctionText_hide">
+                                    <div class="modelTitle_Style vignetColor">
+                                        <p>@escort.Escort.LocationCity</p>
+                                        <h2><span>@escort.Escort.Name</span></h2>
+                                        <div class="model_sortBiography_lists">
+                                            <ul>
+                                                <li>Age: @escort.Escort.Age</li>
+                                                <li>Height: @escort.Escort.HeightCm cm</li>
+                                                <li>Body type: @escort.Escort.BustType</li>
+                                                <li>Bust: @escort.Escort.BustSize</li>
+                                                <li>Hair colour: @escort.Escort.HairColor</li>
+                                                <li>Eye colour: @escort.Escort.Eyes</li>
+                                            </ul>
+                                            <a href="@Url.Action("model_profile", "Home", new { id = escort.Escort.Id })">Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div><!-- End .container -->
+        </div>
+    </section><!-- End .featured-proucts-section -->
+</main>
 

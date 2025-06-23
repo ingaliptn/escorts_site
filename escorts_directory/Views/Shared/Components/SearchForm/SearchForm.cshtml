@@ -1,0 +1,75 @@
+﻿@using escorts_directory.Models.VM
+@model SearchFilterViewModel
+
+<form method="get" asp-controller="Search" asp-action="Index" id="searchForm">
+	<div class="row">
+		<div class="form-group column col-lg-3 col-md-3 col-sm-12">
+			<div class="form-group">
+				<select class="customField_design" type="selectState" name="SelectedState">
+                <option value="">State</option>
+                @foreach (var state in Model.States)
+                {
+                    <option value="@state">@state</option>
+                }
+				</select>
+			</div>
+		</div>
+		<div class="form-group column col-lg-3 col-md-3 col-sm-12">
+			<div class="form-group">
+				<select class="customField_design" type="selectCity" name="SelectedCity">
+                <option value="">City</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group column col-lg-3 col-md-3 col-sm-12">
+			<div class="form-group">
+				<select class="customField_design" type="searchGender" name="SelectedGender">
+                <option value="">Gender</option>
+                @foreach (var gender in Model.Genders)
+                {
+                    <option value="@gender">@gender</option>
+                }
+				</select>
+			</div>
+		</div>
+		<div class="form-group column col-lg-3 col-md-3 col-sm-12">
+			<div class="form-group searchBtnVisible">
+				<button type="submit" class="searchBtn"><i class="fa fa-search"></i> Find</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const stateSelects = document.querySelectorAll("select[name='SelectedState']");
+		const citySelects = document.querySelectorAll("select[name='SelectedCity']");
+
+		stateSelects.forEach(stateSelect => {
+			stateSelect.addEventListener("change", function () {
+				const state = this.value;
+
+				citySelects.forEach(citySelect => {
+					citySelect.innerHTML = '<option value="">Loading...</option>';
+
+					fetch(`/Search/GetCities?state=${encodeURIComponent(state)}`)
+						.then(r => r.json())
+						.then(data => {
+							citySelect.innerHTML = '<option value="">Select City</option>';
+							data.forEach(city => {
+								let opt = document.createElement("option");
+								opt.value = city;
+								opt.textContent = city;
+								citySelect.appendChild(opt);
+							});
+						});
+				});
+			});
+		});
+	});
+
+
+
+</script>
+
