@@ -9,9 +9,9 @@ namespace escorts_directory.Controllers
 {
     public class HomeController : Controller
     {
-		private readonly IEscortService _escortService;
+        private readonly IEscortService _escortService;
         private readonly IMemoryCache _cache;
-        private readonly PhotoHelper _photoHelper;
+        private readonly PhotoHelper _photoHelper; 
         public HomeController(IEscortService escortService, IMemoryCache cache, PhotoHelper photoHelper)
         {
             _escortService = escortService;
@@ -21,53 +21,64 @@ namespace escorts_directory.Controllers
 
         // Метод для отримання закешованого номеру телефону
         public async Task<phoneNumber> GetCachedPhoneAsync()
-		{
-			if (!_cache.TryGetValue("PhoneNumber", out phoneNumber phoneNum))
-			{
-				// Якщо немає в кеші, отримуємо з бази даних через сервіс
-				phoneNum = await _escortService.GetPhoneAsync();
+        {
+            if (!_cache.TryGetValue("PhoneNumber", out phoneNumber phoneNum))
+            {
+                // Якщо немає в кеші, отримуємо з бази даних через сервіс
+                phoneNum = await _escortService.GetPhoneAsync();
 
-				// Кешуємо на 10 хвилин
-				_cache.Set("PhoneNumber", phoneNum, TimeSpan.FromMinutes(10));
-			}
+                // Кешуємо на 10 хвилин
+                _cache.Set("PhoneNumber", phoneNum, TimeSpan.FromMinutes(10));
+            }
 
-			// Повертаємо закешований (або новий) результат
-			return phoneNum;
-		}
+            // Повертаємо закешований (або новий) результат
+            return phoneNum;
+        }
 
-		// Метод для встановлення загальних даних ViewBag
-		private async Task SetCommonViewDataAsync(string pageLoc)
-		{
-			var phoneNum = await GetCachedPhoneAsync(); // Використовуємо кешований телефонний номер
-			ViewBag.PhoneShow = phoneNum.phoneShow;
-			ViewBag.PhoneCall = phoneNum.phoneCall;
-			ViewBag.Email = phoneNum.email;
+        // Метод для встановлення загальних даних ViewBag
+        private async Task SetCommonViewDataAsync(string pageLoc)
+        {
+            var phoneNum = await GetCachedPhoneAsync(); // Використовуємо кешований телефонний номер
+            ViewBag.PhoneShow = phoneNum.phoneShow;
+            ViewBag.PhoneCall = phoneNum.phoneCall;
+            ViewBag.Email = phoneNum.email;
 
-			var pageInfo = await _escortService.GetInfoAsync(pageLoc);
-			ViewBag.Title = pageInfo.titleText;
-			ViewBag.Desc = pageInfo.descText;
-			ViewBag.Canonical = pageInfo.canonicalText;
-			ViewBag.Robots = pageInfo.robotsText;
-			ViewBag.bannerimg = pageInfo.headerText;
-			ViewBag.banner = pageInfo.bodyText;
-			ViewBag.Page = pageInfo.pageLocation;
-		}
+            var pageInfo = await _escortService.GetInfoAsync(pageLoc);
+            ViewBag.Title = pageInfo.titleText;
+            ViewBag.Desc = pageInfo.descText;
+            ViewBag.Canonical = pageInfo.canonicalText;
+            ViewBag.Robots = pageInfo.robotsText;
+            ViewBag.bannerimg = pageInfo.headerText;
+            ViewBag.banner = pageInfo.bodyText;
+            ViewBag.Page = pageInfo.pageLocation;
+        }
 
         [HttpGet]
         public async Task<IActionResult> LoadMoreEscorts(int skip = 0, int take = 12)
         {
             var escorts = await _escortService.GetEscortsAsync();
+            var rnd = new Random(); 
             var chunk = escorts
                 .Skip(skip)
                 .Take(take)
                 .Select(e => new EscortWithPhoto
                 {
                     Escort = e,
-                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id),
+                    Badges = GenerateRandomBadges(rnd)
                 })
                 .ToList();
 
             return PartialView("_EscortCardsPartial", chunk);
+        }
+        private List<string> GenerateRandomBadges(Random rnd)
+        {
+            var badgeCount = rnd.Next(0, 4);
+            var badges = new List<string>();
+            if (badgeCount >= 1) badges.Add("Available now");
+            if (badgeCount >= 2) badges.Add("Online");
+            if (badgeCount == 3) badges.Add("Verified");
+            return badges;
         }
 
 
@@ -75,13 +86,26 @@ namespace escorts_directory.Controllers
         {
             var escorts = await _escortService.GetEscortsAsync();
 
-            var escortsWithPhoto = escorts
-                .Select(e => new EscortWithPhoto
+            var rnd = new Random();
+            var escortsWithPhoto = new List<EscortWithPhoto>();
+
+            foreach (var e in escorts)
+            {
+                var cacheKey = $"Badges_{e.Id}";
+
+                if (!_cache.TryGetValue(cacheKey, out List<string> badges))
+                {
+                    badges = GenerateRandomBadges(rnd);
+                    _cache.Set(cacheKey, badges, TimeSpan.FromMinutes(15));
+                }
+
+                escortsWithPhoto.Add(new EscortWithPhoto
                 {
                     Escort = e,
-                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
-                })
-                .ToList();
+                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id),
+                    Badges = badges
+                });
+            }
 
             var model = new EscortsViewModel
             {
@@ -91,61 +115,125 @@ namespace escorts_directory.Controllers
 
             return View(model);
         }
-        public IActionResult about_us()
+		public IActionResult about_us()
+		{
+			var breadcrumbs = new List<BreadcrumbItem>
+	{
+		new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+		new BreadcrumbItem { Title = "About Us", IsActive = true }
+	};
+
+			ViewBag.Breadcrumbs = breadcrumbs;
+			return View();
+		}
+		public IActionResult terminology()
+		{
+			var breadcrumbs = new List<BreadcrumbItem>
+	{
+		new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+		new BreadcrumbItem { Title = "Terminology", IsActive = true }
+	};
+
+			ViewBag.Breadcrumbs = breadcrumbs;
+			return View();
+		}
+		public IActionResult etiquette()
+		{
+			var breadcrumbs = new List<BreadcrumbItem>
+	{
+		new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+		new BreadcrumbItem { Title = "Etiquette", IsActive = true }
+	};
+
+			ViewBag.Breadcrumbs = breadcrumbs;
+			return View();
+		}
+		public IActionResult category_page()
         {
-            return View();
-        }
-        public IActionResult category_page()
-        {
+            var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+        new BreadcrumbItem { Title = "Category Page", IsActive = true }
+    };
+
+            ViewBag.Breadcrumbs = breadcrumbs;
             return View();
         }
         public IActionResult common_page()
         {
+            var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+        new BreadcrumbItem { Title = "Common Page", IsActive = true }
+    };
+
+            ViewBag.Breadcrumbs = breadcrumbs;
             return View();
         }
         public IActionResult contact_us()
         {
+            var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+        new BreadcrumbItem { Title = "Contact Us", IsActive = true }
+    };
+
+            ViewBag.Breadcrumbs = breadcrumbs;
             return View();
         }
         public IActionResult create_account()
         {
+            var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+        new BreadcrumbItem { Title = "Create Account", IsActive = true }
+    };
+
+            ViewBag.Breadcrumbs = breadcrumbs;
             return View();
         }
-		public async Task<IActionResult> model_profile(int id)
-		{
-			var escort = await _escortService.GetEscortByIdAsync(id);
-			if (escort == null) return NotFound();
+        public async Task<IActionResult> model_profile(int id)
+        {
+            var escort = await _escortService.GetEscortByIdAsync(id);
+            if (escort == null) return NotFound();
 
-			var photoCount = _photoHelper.GetPhotoCount(escort.Name, escort.Id);
+            var photoCount = _photoHelper.GetPhotoCount(escort.Name, escort.Id);
 
-			var model = new EscortProfileViewModel
-			{
-				Escort = escort,
-				PhotoCount = photoCount,
-				Services = await _escortService.GetServicesByEscortIdAsync(id),
-				RandomEscorts = (await _escortService.GetRandomEscortsAsync(6))
-					.Select(e => new EscortWithPhoto
-					{
-						Escort = e,
-						PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
-					}).ToList()
-			};
-
-
-			var services = await _escortService.GetServicesByEscortIdAsync(id);
-			var random = (await _escortService.GetRandomEscortsAsync(6))
-				.Select(e => new EscortWithPhoto
-				{
-					Escort = e,
-					PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
-				}).ToList();
-
-			return View(model);
-		}
+            var model = new EscortProfileViewModel
+            {
+                Escort = escort,
+                PhotoCount = photoCount,
+                Services = await _escortService.GetServicesByEscortIdAsync(id),
+                RandomEscorts = (await _escortService.GetRandomEscortsAsync(6))
+                    .Select(e => new EscortWithPhoto
+                    {
+                        Escort = e,
+                        PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                    }).ToList()
+            };
 
 
+            var services = await _escortService.GetServicesByEscortIdAsync(id);
+            var random = (await _escortService.GetRandomEscortsAsync(6))
+                .Select(e => new EscortWithPhoto
+                {
+                    Escort = e,
+                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                }).ToList();
 
-		public IActionResult Privacy()
+            var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+        new BreadcrumbItem { Title = model.Escort.Name, IsActive = true }
+    };
+
+            ViewBag.Breadcrumbs = breadcrumbs;
+            return View(model);
+        }
+
+
+
+        public IActionResult Privacy()
         {
             return View();
         }
