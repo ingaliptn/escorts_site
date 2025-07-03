@@ -4,10 +4,8 @@
 	<div class="container">
 		<h1>About us</h1>
 		<div class="breadcum_block">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Common Page</li>
-			</ol>
+			@await Html.PartialAsync("_BreadcrumbsPartial", (List<BreadcrumbItem>)ViewBag.Breadcrumbs)
+
 		</div>
 	</div>
 	<div class="sliderBanner_Overlay"></div>
@@ -15,12 +13,12 @@
 
 <main class="main_container_wrapper">
 	<div class="aboutContent_section">
+
 		<div class="contentSection_headBlock">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-8">
-						<h2>Welcome to Escorts Directory...</h2>
-						<!--<button type="button">Online Booking</button>-->
+						<h2>About Us</h2>
 					</div>
 				</div>
 			</div>
@@ -30,57 +28,19 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-8">
-						<p>Escort service and its need can’t be denied. Giving one the chance to feel the sensual excitement, escort service satiates the sensual thirst of individuals by providing the best companionship experience. Among all, Las Vegas holds importance relating to sensual services. Las Vegas escorts services are considered as the best medium to content one’s thirst with the finest tempestuous services.</p>
+						<p>Our mission is to provide a digital meeting ground for independent service providers and people who want to hire them or use their services. People who create their profiles on our directory site are independent adults and are performing their services voluntarily.</p>
+						<p>We strictly ensure that we are following all applicable state and federal regulations regarding prostitution and human trafficking.</p>
+						<p>Our advertisers are acquainted with applicable state and federal statutes. Our detailed policies and guidelines for those who list their services on our site are available on a separate webpage.</p>
+						<p>Anyone found violating any relevant regulations has their account on our site suspended.</p>
+						<p>You can inform us if you come across any instance of an activity on our site that seems to be violating any law.</p>
+						<p>As a directory listing site, we provide the platform and give the guidelines to anyone who wants to list their services on our site. However, we do not directly verify the details mentioned on every profile including but not limited to the accuracy or recency of any photographs, age or other details shared by those who use our site.</p>
+						<p>We assume no responsibility or liability regarding any content on our website posted by independent advertisers.</p>
+						<p>We neither control nor authenticate any of the content on our website nor any communications occurring via our website. The contact details posted by advertisers are their personal contact details and have not been verified by us.</p>
+						<p>We do not endorse any advertiser listed on our site. We will not forward any emails sent to us. We will not individually respond to emails directed at us asking about the authenticity or any other aspects of any particular advertiser. We are not an escort agency nor are we affiliated with any particular advertiser on the site.</p>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-		<div class="contentSection_headBlock">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-8">
-						<h2>About</h2>
-						<!--<button type="button">Online Booking</button>-->
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="contentSection_textBlock">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-8">
-						<h2>Printing and typesetting industry</h2>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="contentSection_headBlock">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-8">
-						<h2>About</h2>
-						<p>Custom built and coded from scratch with open source programming, Dakota Dice offers an experience that is unprecedented in aesthetics, functionality and performance.  Our lightening fast servers mean that you will never have to wait to view your favourite providers. As an advertiser, your profile is completely self manageable because you deserve to be in control.</p>
-						<!--<button type="button">Online Booking</button>-->
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="contentSection_textBlock">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-8">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
 	</div>
 </main>
 

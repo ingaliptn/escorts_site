@@ -4,10 +4,8 @@
 	<div class="container">
 		<h1>Contact us</h1>
 		<div class="breadcum_block">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Contact us</li>
-			</ol>
+			@await Html.PartialAsync("_BreadcrumbsPartial", (List<BreadcrumbItem>)ViewBag.Breadcrumbs)
+
 		</div>
 	</div>
 	<div class="sliderBanner_Overlay"></div>

@@ -9,5 +9,7 @@ public interface IEscortService
     Task<inform> GetInfoAsync(string pageLoc);
     Task<phoneNumber> GetPhoneAsync();
 	Task<List<string>> GetServicesByEscortIdAsync(int escortId);
+    Task<List<escorts>> GetEscortsByLocationAsync(string state, string city);
+    Task<List<(string State, string City, int Count)>> GetEscortCitiesAsync();
 
 }

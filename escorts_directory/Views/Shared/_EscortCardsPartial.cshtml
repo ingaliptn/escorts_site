@@ -27,5 +27,18 @@
                 </div>
             </div>
         </div>
+        @if (escort.Badges.Any())
+        {
+            <div class="profileBadged_block">
+                <div class="singleRowStyle">
+                    @foreach (var badge in escort.Badges)
+                    {
+                        <div class="status-label @(badge == "Available now" ? "online" : badge == "Online" ? "availableNow" : "verified")">
+                            @badge
+                        </div>
+                    }
+                </div>
+            </div>
+        }
     </div>
 }

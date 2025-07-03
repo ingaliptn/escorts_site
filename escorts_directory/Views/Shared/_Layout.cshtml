@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@* @inject IEscortService EscortService
+
+@{
+	var cityList = await EscortService.GetEscortCitiesAsync();
+} *@
+@functions {
+	public string Slug(string input) => input?.ToLower().Replace(" & ", " and ").Replace(" ", "-");
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -38,7 +48,7 @@
 
 
             @RenderBody()
-
+   
 
 
 		<!--Footer Section -->
@@ -48,81 +58,74 @@
 					<div class="container">
 						<div class="nearbyLocation_lists">
 							<h3>Other Nearby Locations</h3>
-							<div Class="row">
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Los Angeles <span class="countSpan">(306)</span></a></li>
-										<li><a href="#">Sacramento <span class="countSpan">(27)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Arizona <span class="countSpan">(166)</span></a></li>
-										<li><a href="#">San Francisco <span class="countSpan">(113)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">San Diego <span class="countSpan">(69)</span></a></li>
-										<li><a href="#">Albuquerque <span class="countSpan">(6)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Utah <span class="countSpan">(69)</span></a></li>
-										<li><a href="#">Idaho <span class="countSpan">(2)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Reno & Tahoe <span class="countSpan">(14)</span></a></li>
-										<li><a href="#">Colorado <span class="countSpan">(86)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">San Jose <span class="countSpan">(67)</span></a></li>
-										<li><a href="#">Portland <span class="countSpan">(29)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Los Angeles <span class="countSpan">(306)</span></a></li>
-										<li><a href="#">Sacramento <span class="countSpan">(27)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Utah <span class="countSpan">(69)</span></a></li>
-										<li><a href="#">Idaho <span class="countSpan">(2)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Reno & Tahoe <span class="countSpan">(14)</span></a></li>
-										<li><a href="#">Colorado <span class="countSpan">(86)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">San Jose <span class="countSpan">(67)</span></a></li>
-										<li><a href="#">Portland <span class="countSpan">(29)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">Arizona <span class="countSpan">(166)</span></a></li>
-										<li><a href="#">San Francisco <span class="countSpan">(113)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="#">San Diego <span class="countSpan">(69)</span></a></li>
-										<li><a href="#">Albuquerque <span class="countSpan">(6)</span></a></li>
-									</ul>
-								</div>
+							
 
+							@* <div class="row">
+								@foreach (var group in cityList.GroupBy(x => x.State))
+								{
+									<div class="col-6 col-md-3 col-lg-2">
+										<ul>
+											@foreach (var city in group)
+											{
+												var stateSlug = Slug(city.State);
+												var citySlug = Slug(city.City);
+												<li>
+													<a href="/@stateSlug/@citySlug">
+														@city.City <span class="countSpan">(@city.Count)</span>
+													</a>
+												</li>
+											}
+										</ul>
+									</div>
+								}
+							</div> *@
+
+
+
+
+							<div class="row">
+								<div class="col-6 col-md-3 col-lg-2">
+									<ul>
+										<li>
+											<a href="/@Slug("California")/@Slug("Los Angeles")">
+												Los Angeles <span class="countSpan">(6)</span>
+											</a>
+										</li>
+										<li><a href="/@Slug("California")/@Slug("Sacramento")">Sacramento <span class="countSpan">(2)</span></a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-md-3 col-lg-2">
+									<ul>
+										<li><a href="/@Slug("Arizona")/@Slug("Phoenix")">Phoenix <span class="countSpan">(6)</span></a></li>
+										<li><a href="/@Slug("California")/@Slug("San Francisco")">San Francisco <span class="countSpan">(6)</span></a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-md-3 col-lg-2">
+									<ul>
+										<li><a href="/@Slug("California")/@Slug("San Diego")">San Diego <span class="countSpan">(6)</span></a></li>
+										<li><a href="/@Slug("New Mexico")/@Slug("Albuquerque")">Albuquerque <span class="countSpan">(2)</span></a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-md-3 col-lg-2">
+									<ul>
+										<li><a href="/@Slug("Nevada")/@Slug("Las Vegas")">Las Vegas <span class="countSpan">(24)</span></a></li>
+										<li><a href="/@Slug("Indiana")/@Slug("Indianapolis")">Indianapolis <span class="countSpan">(6)</span></a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-md-3 col-lg-2">
+									<ul>
+										<li><a href="/@Slug("New York")/@Slug("New York City")">New York City <span class="countSpan">(6)</span></a></li>
+										<li><a href="/@Slug("Colorado")/@Slug("Denver")">Denver <span class="countSpan">(6)</span></a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-md-3 col-lg-2">
+									<ul>
+										<li><a href="/@Slug("California")/@Slug("San Jose")">San Jose <span class="countSpan">(6)</span></a></li>
+										<li><a href="/@Slug("Oregon")/@Slug("Portland")">Portland <span class="countSpan">(3)</span></a></li>
+									</ul>
+								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -165,10 +168,10 @@
 									<li><a href="#">Videos</a></li>
 									<li><a href="#">FAQ</a></li>
 									<li><a href="#">Reviews</a></li>
-									<li><a href="#">Contact</a></li>
+									<li><a asp-controller="Home" asp-action="contact_us">Contact</a></li>
 									<li><a href="#">Terms & Privacy</a></li>
-									<li><a href="#">Directory</a></li>
-									<li><a href="#">Affiliate</a></li>
+									<li><a asp-controller="Home" asp-action="terminology">Terminology</a></li>
+									<li><a asp-controller="Home" asp-action="etiquette">Etiquette</a></li>
 								</ul>
 
 								<div class="ft_desclaimer">

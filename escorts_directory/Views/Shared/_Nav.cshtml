@@ -1,4 +1,6 @@
-﻿
+﻿@functions {
+	public string Slug(string input) => input?.ToLower().Replace(" & ", " and ").Replace(" ", "-");
+}
 
 <!--Nav Box-->
 <div class="nav-outer">
@@ -12,57 +14,57 @@
 						<div class="mega-menu-bar row">
 							<div class="column col-lg-2 col-md-2 col-sm-12">
 								<ul>
-									<li><a href="#">Alabama</a></li>
-									<li><a href="#">Alaska</a></li>
-									<li><a href="#">Arizona</a></li>
-									<li><a href="#">Arkansas</a></li>
-									<li><a href="#">California</a></li>
-									<li><a href="#">Colorado</a></li>
-									<li><a href="#">Connecticut</a></li>
-									<li><a href="#">Delaware</a></li>
-									<li><a href="#">Florida</a></li>
+									<li><a href="/@Slug("New Mexico")/@Slug("Albuquerque")">Albuquerque</a></li>
+									<li><a href="/@Slug("Georgia")/@Slug("Atlanta")">Atlanta</a></li>
+									<li><a href="/@Slug("Texas")/@Slug("Austin")">Austin</a></li>
+									<li><a href="/@Slug("Maryland")/@Slug("Baltimore")">Baltimore</a></li>
+									<li><a href="/@Slug("Massachusetts")/@Slug("Boston")">Boston</a></li>
+									<li><a href="/@Slug("North Carolina")/@Slug("Charlotte")">Charlotte</a></li>
+									<li><a href="/@Slug("Illinois")/@Slug("Chicago")">Chicago</a></li>
+									<li><a href="/@Slug("Ohio")/@Slug("Columbus")">Columbus</a></li>
+									<li><a href="/@Slug("Texas")/@Slug("Dallas")">Dallas</a></li>
 								</ul>
 							</div>
 							<div class="column col-lg-2 col-md-2 col-sm-12">
 								<ul>
-									<li><a href="#">Georgia</a></li>
-									<li><a href="#">Hawaii</a></li>
-									<li><a href="#">Idaho</a></li>
-									<li><a href="#">Illinois</a></li>
-									<li><a href="#">Indiana</a></li>
-									<li><a href="#">Iowa</a></li>
-									<li><a href="#">Kansas</a></li>
-									<li><a href="#">Kentucky</a></li>
-									<li><a href="#">Louisiana</a></li>
+									<li><a href="/@Slug("Colorado")/@Slug("Denver")">Denver</a></li>
+									<li><a href="/@Slug("Michigan")/@Slug("Detroit")">Detroit</a></li>
+									<li><a href="/@Slug("Texas")/@Slug("El Paso")">El Paso</a></li>
+									<li><a href="/@Slug("Texas")/@Slug("Fort Worth")">Fort Worth</a></li>
+									<li><a href="/@Slug("California")/@Slug("Fresno")">Fresno</a></li>
+									<li><a href="/@Slug("Texas")/@Slug("Houston")">Houston</a></li>
+									<li><a href="/@Slug("Indiana")/@Slug("Indianapolis")">Indianapolis</a></li>
+									<li><a href="/@Slug("Florida")/@Slug("Jacksonville")">Jacksonville</a></li>
+									<li><a href="/@Slug("Nevada")/@Slug("Las Vegas")">Las Vegas</a></li>
 								</ul>
 							</div>
 							<div class="column col-lg-2 col-md-2 col-sm-12">
 								<ul>
-									<li><a href="#">Maine</a></li>
-									<li><a href="#">Maryland</a></li>
-									<li><a href="#">Massachusetts</a></li>
-									<li><a href="#">Michigan</a></li>
-									<li><a href="#">Minnesota</a></li>
-									<li><a href="#">Mississippi</a></li>
-									<li><a href="#">Missouri</a></li>
-									<li><a href="#">Montana</a></li>
-									<li><a href="#">Nebraska</a></li>
+									<li><a href="/@Slug("California")/@Slug("Los Angeles")">Los Angeles</a></li>
+									<li><a href="/@Slug("Tennessee")/@Slug("Memphis")">Memphis</a></li>
+									<li><a href="/@Slug("Tennessee")/@Slug("Nashville")">Nashville</a></li>
+									<li><a href="/@Slug("New York")/@Slug("New York City")">New York City</a></li>
+									<li><a href="/@Slug("Oklahoma")/@Slug("Oklahoma City")">Oklahoma City</a></li>
+									<li><a href="/@Slug("Pennsylvania")/@Slug("Philadelphia")">Philadelphia</a></li>
+									<li><a href="/@Slug("Arizona")/@Slug("Phoenix")">Phoenix</a></li>
+									<li><a href="/@Slug("Oregon")/@Slug("Portland")">Portland</a></li>
+									<li><a href="/@Slug("California")/@Slug("Sacramento")">Sacramento</a></li>
 								</ul>
 							</div>
 							<div class="column col-lg-2 col-md-2 col-sm-12">
 								<ul>
-									<li><a href="#">Nevada</a></li>
-									<li><a href="#">New Hampshire</a></li>
-									<li><a href="#">New Jersey</a></li>
-									<li><a href="#">New Mexico</a></li>
-									<li><a href="#">New York</a></li>
-									<li><a href="#">North Carolina</a></li>
-									<li><a href="#">North Dakota</a></li>
-									<li><a href="#">Ohio</a></li>
-									<li><a href="#">Oklahoma</a></li>
+									<li><a href="/@Slug("Texas")/@Slug("San Antonio")">San Antonio</a></li>
+									<li><a href="/@Slug("California")/@Slug("San Diego")">San Diego</a></li>
+									<li><a href="/@Slug("California")/@Slug("San Francisco")">San Francisco</a></li>
+									<li><a href="/@Slug("California")/@Slug("San Jose")">San Jose</a></li>
+									<li><a href="/@Slug("Washington")/@Slug("Seattle")">Seattle</a></li>
+									<li><a href="/@Slug("Arizona")/@Slug("Tucson")">Tucson</a></li>
+									<li><a href="/@Slug("District of Columbia")/@Slug("Washington, D.C.")">Washington, D.C.</a></li>
+									@* <li><a href="/@Slug("California")/@Slug("Sacramento")">Ohio</a></li>
+									<li><a href="/@Slug("California")/@Slug("Sacramento")">Oklahoma</a></li> *@
 								</ul>
 							</div>
-							<div class="column col-lg-2 col-md-2 col-sm-12">
+							@* <div class="column col-lg-2 col-md-2 col-sm-12">
 								<ul>
 									<li><a href="#">Oregon</a></li>
 									<li><a href="#">Pennsylvania</a></li>
@@ -85,19 +87,19 @@
 									<li><a href="#">Wisconsin</a></li>
 									<li><a href="#">Wyoming</a></li>
 								</ul>
-							</div>
+							</div> *@
 						</div>
 					</div>
 				</li>
-				<li class="dropdown">
+				@* <li class="dropdown">
 					<a href="javascript:void(0)"><i class="fa fa-th-large"></i><span>CATEGORIES</span></a>
 					<ul>
-						<li><a href="#">Las Vegas</a></li>
+						<li><a href="#">Escorts</a></li>
 						<li><a href="#">Dalas</a></li>
 						<li><a href="#">Georgia</a></li>
 					</ul>
-				</li>
-				<li><a asp-action="about_us"><i class="fa fa-heart"></i><span>ABOUT US</span></a></li>
+				</li> *@
+				<li><a asp-controller="Home" asp-action="about_us"><i class="fa fa-heart"></i><span>ABOUT US</span></a></li>
 				<li class="dropdown has-mega-menu">
 					<a href="javascript:void(0)"><i class="fa fa-search"></i><span>SEARCH</span></a>
 					<div class="mega-menu search-panel" data-width="1110px">
@@ -110,7 +112,7 @@
 						</div>
 					</div>
 				</li>
-				<li><a href="category_page.html"><i class="fa fa-user"></i><span>MEMBERS</span></a></li>
+                @* <li><a href="#"><i class="fa fa-user"></i><span>MEMBERS</span></a></li> *@
 			</ul>
 		</div>
 	</nav>

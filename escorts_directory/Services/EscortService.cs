@@ -50,6 +50,29 @@ public class EscortService : IEscortService
             .ToListAsync();
     }
 
+    public async Task<List<escorts>> GetEscortsByLocationAsync(string state, string city)
+    {
+        var normalizedState = state.Replace("-", " ", StringComparison.OrdinalIgnoreCase);
+        var normalizedCity = city.Replace("-", " ", StringComparison.OrdinalIgnoreCase);
+
+        return await _db.escorts
+            .Where(e =>
+                e.LocationState.ToLower() == normalizedState.ToLower() &&
+                e.LocationCity.ToLower() == normalizedCity.ToLower())
+            .ToListAsync();
+    }
+	public async Task<List<(string State, string City, int Count)>> GetEscortCitiesAsync()
+	{
+		return await _db.escorts
+			.GroupBy(e => new { e.LocationState, e.LocationCity })
+			.Select(g => new ValueTuple<string, string, int>(
+				g.Key.LocationState,
+				g.Key.LocationCity,
+				g.Count()
+			))
+			.OrderByDescending(x => x.Item3)
+			.ToListAsync();
+	}
 
 
 }

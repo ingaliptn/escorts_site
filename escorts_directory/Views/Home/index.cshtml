@@ -2,6 +2,7 @@
 @model EscortsViewModel
 
 
+
 <partial name="_Header" />
 <partial name="_HeroVideo" />
 
@@ -12,6 +13,7 @@
             <div class="highlitedModel_gridList">
                 @foreach (var escort in Model.Featured)
                 {
+
                     <div class="modelPhoto photoWith_review largeHeight">
                         <figure class="modelPhoto-image-container">
                             <a asp-action="model_profile" asp-route-id="@escort.Escort.Id" class="modelPhoto-image">
@@ -45,33 +47,7 @@
     <section class="featured_model_carouslSection model_listGridSection">
         <div class="featuresModle_bgOverlay">
             <div class="regularModel_gridList" id="escortContainer">
-                @foreach (var escort in Model.Regular.Take(12))
-                {
-                    <div class="modelPhoto photoWith_review largeHeight">
-                        <figure class="modelPhoto-image-container">
-                            <a asp-action="model_profile" asp-route-id="@escort.Escort.Id" class="modelPhoto-image">
-                                <img src="@escort.PhotoUrl" alt="@escort.Escort.Name" />
-                            </a>
-                        </figure>
-                        <div class="modelPhoto-details desctionText_hide">
-                            <div class="modelTitle_Style vignetColor">
-                                <p>@escort.Escort.LocationCity</p>
-                                <h2><span>@escort.Escort.Name</span></h2>
-                                <div class="model_sortBiography_lists">
-                                    <ul>
-                                        <li>Age: @escort.Escort.Age</li>
-                                        <li>Height: @escort.Escort.HeightCm cm</li>
-                                        <li>Body type: @escort.Escort.BustType</li>
-                                        <li>Bust: @escort.Escort.BustSize</li>
-                                        <li>Hair colour: @escort.Escort.HairColor</li>
-                                        <li>Eye colour: @escort.Escort.Eyes</li>
-                                    </ul>
-                                    <a asp-action="model_profile" asp-route-id="@escort.Escort.Id">Profile</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                @await Html.PartialAsync("_EscortCardsPartial", Model.Regular.Take(12).ToList())
 
             </div>
             <div class="bannerButton_group">
