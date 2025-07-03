@@ -60,16 +60,16 @@
 	margin:0px;
 	font-family:"proxima-nova", Helvetica,arial,sans-serif;
 }
-#ageVerify_modal_content .landing_container_wrapper .model_imgBlock{
-	position:absolute;
-	right:-60px;
-	top:-30px;
-	width:400px;
-	position:absolute;
-	right:inherit;
-	left:0px;
-	top:0px;
-}
+	#ageVerify_modal_content .landing_container_wrapper .model_imgBlock {
+		position: absolute;
+		right: -60px;
+		top: -30px;
+		width: 400px;
+		position: absolute;
+		right: inherit;
+		left: 0px;
+		top: 150px;
+	}
 #ageVerify_modal_content .landing_container_wrapper .model_imgBlock img{
 	display:inline-block;
 	max-width:100%;
