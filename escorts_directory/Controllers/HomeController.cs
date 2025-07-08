@@ -20,39 +20,39 @@ namespace escorts_directory.Controllers
 			_photoHelper = photoHelper;
 		}
 
-		// Метод для отримання закешованого номеру телефону
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		public async Task<phoneNumber> GetCachedPhoneAsync()
 		{
 			if (!_cache.TryGetValue("PhoneNumber", out phoneNumber phoneNum))
 			{
-				// Якщо немає в кеші, отримуємо з бази даних через сервіс
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				phoneNum = await _escortService.GetPhoneAsync();
 
-				// Кешуємо на 10 хвилин
-				_cache.Set("PhoneNumber", phoneNum, TimeSpan.FromMinutes(10));
-			}
+                // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 10 пїЅпїЅпїЅпїЅпїЅпїЅ
+                _cache.Set("PhoneNumber", phoneNum, TimeSpan.FromMinutes(10));
+            }
 
-			// Повертаємо закешований (або новий) результат
-			return phoneNum;
-		}
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            return phoneNum;
+        }
 
-		// Метод для встановлення загальних даних ViewBag
-		private async Task SetCommonViewDataAsync(string pageLoc)
-		{
-			var phoneNum = await GetCachedPhoneAsync(); // Використовуємо кешований телефонний номер
-			ViewBag.PhoneShow = phoneNum.phoneShow;
-			ViewBag.PhoneCall = phoneNum.phoneCall;
-			ViewBag.Email = phoneNum.email;
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ViewBag
+        private async Task SetCommonViewDataAsync(string pageLoc)
+        {
+            var phoneNum = await GetCachedPhoneAsync(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+            ViewBag.PhoneShow = phoneNum.phoneShow;
+            ViewBag.PhoneCall = phoneNum.phoneCall;
+            ViewBag.Email = phoneNum.email;
 
-			var pageInfo = await _escortService.GetInfoAsync(pageLoc);
-			ViewBag.Title = pageInfo.titleText;
-			ViewBag.Desc = pageInfo.descText;
-			ViewBag.Canonical = pageInfo.canonicalText;
-			ViewBag.Robots = pageInfo.robotsText;
-			ViewBag.bannerimg = pageInfo.headerText;
-			ViewBag.banner = pageInfo.bodyText;
-			ViewBag.Page = pageInfo.pageLocation;
-		}
+            var pageInfo = await _escortService.GetInfoAsync(pageLoc);
+            ViewBag.Title = pageInfo.titleText;
+            ViewBag.Desc = pageInfo.descText;
+            ViewBag.Canonical = pageInfo.canonicalText;
+            ViewBag.Robots = pageInfo.robotsText;
+            ViewBag.bannerimg = pageInfo.headerText;
+            ViewBag.banner = pageInfo.bodyText;
+            ViewBag.Page = pageInfo.pageLocation;
+        }
 
 		[HttpGet]
 		public async Task<IActionResult> LoadMoreEscorts(int skip = 0, int take = 12)
@@ -259,29 +259,29 @@ namespace escorts_directory.Controllers
 			var escort = await _escortService.GetEscortByIdAsync(id);
 			if (escort == null) return NotFound();
 
-			var photoCount = _photoHelper.GetPhotoCount(escort.Name, escort.Id);
+            var photoCount = _photoHelper.GetPhotoCount(escort.Name, escort.Id);
 
-			var model = new EscortProfileViewModel
-			{
-				Escort = escort,
-				PhotoCount = photoCount,
-				Services = await _escortService.GetServicesByEscortIdAsync(id),
-				RandomEscorts = (await _escortService.GetRandomEscortsAsync(6))
-					.Select(e => new EscortWithPhoto
-					{
-						Escort = e,
-						PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
-					}).ToList()
-			};
+            var model = new EscortProfileViewModel
+            {
+                Escort = escort,
+                PhotoCount = photoCount,
+                Services = await _escortService.GetServicesByEscortIdAsync(id),
+                RandomEscorts = (await _escortService.GetRandomEscortsAsync(6))
+                    .Select(e => new EscortWithPhoto
+                    {
+                        Escort = e,
+                        PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                    }).ToList()
+            };
 
 
-			var services = await _escortService.GetServicesByEscortIdAsync(id);
-			var random = (await _escortService.GetRandomEscortsAsync(6))
-				.Select(e => new EscortWithPhoto
-				{
-					Escort = e,
-					PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
-				}).ToList();
+            var services = await _escortService.GetServicesByEscortIdAsync(id);
+            var random = (await _escortService.GetRandomEscortsAsync(6))
+                .Select(e => new EscortWithPhoto
+                {
+                    Escort = e,
+                    PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
+                }).ToList();
 
 			var breadcrumbs = new List<BreadcrumbItem>
 	{
@@ -293,6 +293,9 @@ namespace escorts_directory.Controllers
 			return View(model);
 		}
 
+            ViewBag.Breadcrumbs = breadcrumbs;
+            return View(model);
+        }
 
 
 		public IActionResult Privacy()
