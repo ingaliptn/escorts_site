@@ -10,7 +10,7 @@
         else
         {
             <li class="breadcrumb-item">
-                <a asp-controller="@item.Controller" asp-action="@item.Action">@item.Title</a>
+                <a asp-controller="@item.Controller" asp-action="@item.Action" asp-all-route-data="item.RouteValues">@item.Title</a>
             </li>
         }
     }

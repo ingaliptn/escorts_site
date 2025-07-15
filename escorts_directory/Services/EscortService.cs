@@ -73,6 +73,16 @@ public class EscortService : IEscortService
 			.OrderByDescending(x => x.Item3)
 			.ToListAsync();
 	}
+	public async Task<escorts> GetEscortBySlugAsync(string city, string name)
+	{
+		var normalizedCity = city.Replace("-", " ").ToLowerInvariant();
+		var normalizedName = name.Replace("-", " ").ToLowerInvariant();
+
+		return await _db.escorts
+			.FirstOrDefaultAsync(e =>
+				e.LocationCity.ToLower() == normalizedCity &&
+				e.Name.ToLower() == normalizedName);
+	}
 
 
 }

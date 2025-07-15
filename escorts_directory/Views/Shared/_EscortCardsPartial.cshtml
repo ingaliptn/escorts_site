@@ -6,7 +6,11 @@
     var e = escort.Escort;
     <div class="modelPhoto photoWith_review largeHeight">
         <figure class="modelPhoto-image-container">
-            <a asp-action="model_profile" asp-route-id="@e.Id" class="modelPhoto-image">
+            <a asp-action="ModelProfile"
+                       asp-controller="Home"
+                       asp-route-state="@escort.Escort.LocationState.ToLower().Replace(" ", "-")"
+                       asp-route-city="@escort.Escort.LocationCity.ToLower().Replace(" ", "-")"
+                       asp-route-name="@escort.Escort.Name.ToLower().Replace(" ", "-")" class="modelPhoto-image">
                 <img src="@escort.PhotoUrl" alt="@e.Name" />
             </a>
         </figure>
@@ -23,7 +27,13 @@
                         <li>Hair colour: @e.HairColor</li>
                         <li>Eye colour: @e.Eyes</li>
                     </ul>
-                    <a asp-action="model_profile" asp-route-id="@e.Id">Profile</a>
+                    <a asp-action="ModelProfile"
+                       asp-controller="Home"
+                       asp-route-state="@escort.Escort.LocationState.ToLower().Replace(" ", "-")"
+                       asp-route-city="@escort.Escort.LocationCity.ToLower().Replace(" ", "-")"
+                       asp-route-name="@escort.Escort.Name.ToLower().Replace(" ", "-")">
+                        @escort.Escort.Name
+                    </a>
                 </div>
             </div>
         </div>

@@ -28,7 +28,11 @@
 
 					<div class="modelPhoto photoWith_review largeHeight">
 						<figure class="modelPhoto-image-container">
-							<a asp-action="model_profile" asp-route-id="@escort.Escort.Id" class="modelPhoto-image">
+							<a asp-action="ModelProfile"
+							   asp-controller="Home"
+							   asp-route-state="@escort.Escort.LocationState.ToLower().Replace(" ", "-")"
+							   asp-route-city="@escort.Escort.LocationCity.ToLower().Replace(" ", "-")"
+							   asp-route-name="@escort.Escort.Name.ToLower().Replace(" ", "-")" class="modelPhoto-image">
 								<img src="@escort.PhotoUrl" alt="@escort.Escort.Name" />
 							</a>
 						</figure>
@@ -45,7 +49,13 @@
 										<li>Hair colour: @escort.Escort.HairColor</li>
 										<li>Eye colour: @escort.Escort.Eyes</li>
 									</ul>
-									<a asp-action="model_profile" asp-route-id="@escort.Escort.Id">Profile</a>
+									<a asp-action="ModelProfile"
+									   asp-controller="Home"
+									   asp-route-state="@escort.Escort.LocationState.ToLower().Replace(" ", "-")"
+									   asp-route-city="@escort.Escort.LocationCity.ToLower().Replace(" ", "-")"
+									   asp-route-name="@escort.Escort.Name.ToLower().Replace(" ", "-")">
+										@escort.Escort.Name
+									</a>
 								</div>
 							</div>
 						</div>

@@ -11,5 +11,5 @@ public interface IEscortService
 	Task<List<string>> GetServicesByEscortIdAsync(int escortId);
     Task<List<escorts>> GetEscortsByLocationAsync(string state, string city);
     Task<List<(string State, string City, int Count)>> GetEscortCitiesAsync();
-
+    Task<escorts> GetEscortBySlugAsync(string city, string name);
 }

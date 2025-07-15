@@ -3,58 +3,50 @@ using escorts_directory.Models.VM;
 using escorts_directory.Services;
 using Microsoft.AspNetCore.Mvc;
 
+[Route("Search")]
 public class SearchController : Controller
 {
-	private readonly IEscortService _escortService;
-	private readonly LocationDataService _locationService;
-	private readonly PhotoHelper _photoHelper;
+    private readonly IEscortService _escortService;
+    private readonly LocationDataService _locationService;
+    private readonly PhotoHelper _photoHelper;
 
-	public SearchController(IEscortService escortService, LocationDataService locationService, PhotoHelper photoHelper)
-	{
-		_escortService = escortService;
-		_locationService = locationService;
-		_photoHelper = photoHelper;
-	}
+    public SearchController(IEscortService escortService, LocationDataService locationService, PhotoHelper photoHelper)
+    {
+        _escortService = escortService;
+        _locationService = locationService;
+        _photoHelper = photoHelper;
+    }
 
-	[HttpGet]
-	public async Task<IActionResult> Index([FromQuery] SearchFilterViewModel model)
-	{
-		Console.WriteLine($"State: {model.SelectedState}, City: {model.SelectedCity}, Gender: {model.SelectedGender}");
+    [HttpGet("")]
+    public async Task<IActionResult> Index([FromQuery] SearchFilterViewModel model)
+    {
+        // Очищення нулів і дефолтних значень
+        model.SelectedState = string.IsNullOrWhiteSpace(model.SelectedState) || model.SelectedState == "0" ? null : model.SelectedState;
+        model.SelectedCity = string.IsNullOrWhiteSpace(model.SelectedCity) || model.SelectedCity == "0" ? null : model.SelectedCity;
 
-		var allEscorts = await _escortService.GetEscortsAsync();
+        if (model.SelectedState != null && model.SelectedCity != null)
+        {
+            // Генеруємо slug'и (якщо потрібно – заміни пробіли на дефіси)
+            var stateSlug = model.SelectedState.ToLower().Replace(" ", "-");
+            var citySlug = model.SelectedCity.ToLower().Replace(" ", "-");
 
-		model.SelectedState = string.IsNullOrWhiteSpace(model.SelectedState) || model.SelectedState == "0" ? null : model.SelectedState;
-		model.SelectedCity = string.IsNullOrWhiteSpace(model.SelectedCity) || model.SelectedCity == "0" ? null : model.SelectedCity;
-		model.SelectedGender = string.IsNullOrWhiteSpace(model.SelectedGender) || model.SelectedGender == "0" ? null : model.SelectedGender;
+            // редірект на /state/city
+            return RedirectToAction("ByLocation", "Home", new { state = stateSlug, city = citySlug });
+        }
 
-		var filtered = allEscorts.Where(e =>
-	(model.SelectedState == null || string.Equals(e.LocationState, model.SelectedState, StringComparison.OrdinalIgnoreCase)) &&
-	(model.SelectedCity == null || string.Equals(e.LocationCity, model.SelectedCity, StringComparison.OrdinalIgnoreCase)) &&
-	(model.SelectedGender == null || string.Equals(e.Gender, model.SelectedGender, StringComparison.OrdinalIgnoreCase))
-).ToList();
+        // Якщо дані не валідні або не обрано, повертаємось на сторінку пошуку
+        model.States = _locationService.GetStates();
+        model.Cities = _locationService.GetCitiesForState(model.SelectedState ?? "");
 
+        // TODO: можеш створити окремий view, якщо хочеш відображати часткові результати
+        return View("SearchForm", model); // або поверни просто Index
+    }
 
-
-		model.Results = filtered.Select(e => new EscortWithPhoto
-		{
-			Escort = e,
-			PhotoUrl = _photoHelper.GetProfilePhoto(e.Name, e.Id)
-		}).ToList();
-
-		// Ініціалізація списків для форми
-		model.States = _locationService.GetStates();
-		model.Genders = _locationService.GetGenders();
-		model.Cities = _locationService.GetCitiesForState(model.SelectedState ?? "");
-
-		return View("~/Views/Home/category_page.cshtml", model); // Показ результатів у category_page
-	}
-
-
-	[HttpGet]
-	public JsonResult GetCities(string state)
-	{
-		var cities = _locationService.GetCitiesForState(state);
-		return Json(cities);
-	}
-
+    [Route("GetCities")]
+    [HttpGet]
+    public JsonResult GetCities(string state)
+    {
+        var cities = _locationService.GetCitiesForState(state);
+        return Json(cities);
+    }
 }

@@ -6,6 +6,7 @@
         public string Controller { get; set; }
         public string Action { get; set; }
         public bool IsActive { get; set; }
+        public Dictionary<string, string> RouteValues { get; set; } = new();
     }
 
 }
