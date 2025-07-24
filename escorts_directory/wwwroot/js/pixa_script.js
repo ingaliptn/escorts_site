@@ -67,28 +67,59 @@
 
 		});
 
-		//Megamenu Toggle
-		$('.mobile-menu li.dropdown .dropdown-btn').on('click', function() {
+		// Megamenu Toggle
+		$('.mobile-menu li.dropdown .dropdown-btn').on('click', function () {
 			$(this).prev('.mega-menu').slideToggle(500);
 		});
 
-
-		//Dropdown toggle
-		$(".navigation_combo .nav_multilabel li.dropdown").not( "li.has-mega-menu" ).on('mouseenter', function(){
-		    $(this).children('ul').stop().slideDown(300);
-		 });
-		$(".navigation_combo .nav_multilabel li.dropdown").not( "li.has-mega-menu" ).on('mouseleave', function(){
-		    $(this).children('ul').stop().slideUp(300);
+		// Відкриття/закриття панелі пошуку при кліку на кнопку
+		$('#searchMenu > a').on('click', function (event) {
+			event.stopPropagation(); // Запобігаємо поширенню події
+			console.log("Search menu clicked.");
+			const searchPanel = $('#searchPanel');
+			if (searchPanel.hasClass('active')) {
+				searchPanel.stop().slideUp(300); // Закриваємо панель з анімацією
+				searchPanel.removeClass('active');
+			} else {
+				searchPanel.stop().slideDown(300); // Відкриваємо панель з анімацією
+				searchPanel.addClass('active');
+			}
 		});
 
-		//Mega Menu toggle
-		$(".navigation_combo .nav_multilabel > li.has-mega-menu").on('mouseenter', function(){
-		    $(this).children('.mega-menu').stop().slideDown(300);
+		// Закриття панелі пошуку, якщо клікнули за її межами
+		$(document).on('click', function (event) {
+			if (!$(event.target).closest('#searchMenu').length) {
+				console.log("Click outside search menu, closing it.");
+				const searchPanel = $('#searchPanel');
+				searchPanel.stop().slideUp(300); // Закриваємо панель з анімацією
+				searchPanel.removeClass('active'); // Видаляємо клас active
+			}
+		});
 
+		// Запобігаємо закриттю панелі при кліку всередині
+		$('#searchPanel').on('click', function (event) {
+			event.stopPropagation(); // Зупиняємо подію
 		});
-		$(".navigation_combo .nav_multilabel > li.has-mega-menu").on('mouseleave', function(){
-		    $(this).children('.mega-menu').stop().slideUp(300);
+
+
+		// Dropdown (Locations) toggle через наведення
+		$('#locationsDropdown').on('mouseenter', function () {
+			$(this).children('.mega-menu').stop().slideDown(300);
 		});
+
+		$('#locationsDropdown').on('mouseleave', function () {
+			$(this).children('.mega-menu').stop().slideUp(300);
+		});
+
+		// Оновлений функціонал для пошуку: працює тільки при натисканні, не зникає при відведенні курсору
+		$('#searchMenu').on('mouseenter', function () {
+			// Не закриваємо панель при наведенні
+			return false;
+		});
+
+
+
+
 
 		//Menu Toggle Btn
 		$('.mobile-nav-toggler').on('click', function() {

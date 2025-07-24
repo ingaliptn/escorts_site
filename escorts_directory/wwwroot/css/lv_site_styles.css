@@ -20,8 +20,16 @@ p::selection {background:#671346; color:#ffffff;}
 
 
 
+#searchPanel {
+	display: none; /* Панель пошуку прихована за замовчуванням */
+	opacity: 0; /* Повністю прозора */
+	transition: opacity 0.3s ease-in-out; /* Плавна зміна прозорості */
+}
 
-
+	#searchPanel.active {
+		display: block; /* Коли активна, панель стає видимою */
+		opacity: 1; /* Змінюється прозорість */
+	}
 
 
 /*#fullScreenVideo {
@@ -32,7 +40,7 @@ p::selection {background:#671346; color:#ffffff;}
 .sliderBanner_section {
 	position: relative;
 	height: 80vh;
-	overflow: hidden;*/ /* ������� */
+	overflow: hidden;*/ /* ������� */
 /*}
 
 .video-wrapper {
@@ -41,7 +49,7 @@ p::selection {background:#671346; color:#ffffff;}
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: -1;*/ /* ��� ���� ������ ����� �������� */
+	z-index: -1;*/ /* ��� ���� ������ ����� �������� */
 /*}*/
 
 

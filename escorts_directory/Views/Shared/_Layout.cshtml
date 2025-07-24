@@ -41,174 +41,170 @@
 </head>
 
 <body class="default_theme">
-	<div class="page_wrapper">
-		<a id="backToTop_btn"></a>
-
-		
-
-
-            @RenderBody()
-   
-
-
-		<!--Footer Section -->
-		<footer id="footer_section" class="footer_section">
-			<div class="footer_section_container">
-				<div class="footer_middle_Block">
-					<div class="container">
-						<div class="nearbyLocation_lists">
-							<h3>Other Nearby Locations</h3>
-							
-
-							@* <div class="row">
-								@foreach (var group in cityList.GroupBy(x => x.State))
-								{
-									<div class="col-6 col-md-3 col-lg-2">
-										<ul>
-											@foreach (var city in group)
-											{
-												var stateSlug = Slug(city.State);
-												var citySlug = Slug(city.City);
-												<li>
-													<a href="/@stateSlug/@citySlug">
-														@city.City <span class="countSpan">(@city.Count)</span>
-													</a>
-												</li>
-											}
-										</ul>
-									</div>
-								}
-							</div> *@
+    <div class="page_wrapper">
+        <a id="backToTop_btn"></a>
 
 
 
 
-							<div class="row">
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li>
-											<a href="/@Slug("California")/@Slug("Los Angeles")">
-												Los Angeles <span class="countSpan">(6)</span>
-											</a>
-										</li>
-										<li><a href="/@Slug("California")/@Slug("Sacramento")">Sacramento <span class="countSpan">(2)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="/@Slug("Arizona")/@Slug("Phoenix")">Phoenix <span class="countSpan">(6)</span></a></li>
-										<li><a href="/@Slug("California")/@Slug("San Francisco")">San Francisco <span class="countSpan">(6)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="/@Slug("California")/@Slug("San Diego")">San Diego <span class="countSpan">(6)</span></a></li>
-										<li><a href="/@Slug("New Mexico")/@Slug("Albuquerque")">Albuquerque <span class="countSpan">(2)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="/@Slug("Nevada")/@Slug("Las Vegas")">Las Vegas <span class="countSpan">(24)</span></a></li>
-										<li><a href="/@Slug("Indiana")/@Slug("Indianapolis")">Indianapolis <span class="countSpan">(6)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="/@Slug("New York")/@Slug("New York City")">New York City <span class="countSpan">(6)</span></a></li>
-										<li><a href="/@Slug("Colorado")/@Slug("Denver")">Denver <span class="countSpan">(6)</span></a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-md-3 col-lg-2">
-									<ul>
-										<li><a href="/@Slug("California")/@Slug("San Jose")">San Jose <span class="countSpan">(6)</span></a></li>
-										<li><a href="/@Slug("Oregon")/@Slug("Portland")">Portland <span class="countSpan">(3)</span></a></li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<section class="advertiesment_section">
-				<div class="container">
-					<div Class="row align-items-center">
-						<div class="col-lg-7">
-							<h2>Advertise your services on ESCORTS DIRECTORY</h2>
-						</div>
-						<div class="col-lg-5">
-							<div class="bannerButton_group">
-								<a href="#">Find out more</a>
-								<a href="#">Sign Up</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!--Footer Section -->
-			<section class="footer_section foorterNew">
-				<div class="ftLinks_container container">
-					<div class="row">
-						<div class="col-lg-2 col-xl-2">
-							<div class="footerLogo_block"><a href="~/"><img src="~/img/main_logo.png" alt="" title="" class="img-fluid" /></a></div>
-						</div>
-
-						<div class="col-lg-10 col-xl-10">
-							<div class="ftLink_section">
-								<ul>
-									@* <li><a href="#">VIP Escorts</a></li>
-									<li><a href="#">Girls</a></li>
-									<li><a href="#">Pornstars</a></li>
-									<li><a href="#">City tour</a></li>
-									<li><a href="#">Agencies</a></li>
-									<li><a href="#">Clubs</a></li>
-									<li><a href="#">Independent</a></li>
-									<li><a href="#">Videos</a></li>
-									<li><a href="#">FAQ</a></li>
-									<li><a href="#">Reviews</a></li> *@
-									<li><a href="/about_us">About Us</a></li>
-									@* <li><a href="#">Terms & Privacy</a></li> *@
-									<li><a href="/terminology">Terminology</a></li>
-									<li><a href="/etiquette">Etiquette</a></li>
-								</ul>
-
-								<div class="ft_desclaimer">
-									<p>This WebSite is an advertising and information resource, and as such has no connection or liability with any of the sites or individuals mentioned here. We ONLY sell advertisement space, we are not an escort agency, nor we are in any way involved in escorting or prostitution business. We take no responsibility for the content or actions of third party websites or individuals that you may access following links, email or phone contacts from this portal.</p>
-								</div>
-								<div class="copyrightInfo_block">© @DateTime.Now.Year.ToString() Escorts Directory. All rights reserved.</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!--End Footer Section -->
-		</footer>
-		<!--End Footer Section -->
-
-
-	</div>
+        @RenderBody()
 
 
 
-	<!--(necessary JavaScript plugins)============================ -->
-	<script src="~/js/jquery-3.5.1.min.js"></script>
-	<script src="~/js/popper.min.js"></script>
-	<script src="~/js/bootstrap.min.js"></script>
-	<!--PLUGINS-->
-	<script src="~/js/plugins/wow.min.js"></script>
-	<script src="~/js/plugins/owl.carousel.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script src="~/age-verification/js/jquery.cookie.min.js"></script>
-	<script src="~/age-verification/js/age-verification.js"></script>
+        <!--Footer Section -->
+        <footer id="footer_section" class="footer_section">
+            <div class="footer_section_container">
+                <div class="footer_middle_Block">
+                    <div class="container">
+                        <div class="nearbyLocation_lists">
+                            <h3>Other Nearby Locations</h3>
 
-	<script src="~/js/pixa_script.js"></script>
+
+                            @* <div class="row">
+                                    @foreach (var group in cityList.GroupBy(x => x.State))
+                                    {
+                                        <div class="col-6 col-md-3 col-lg-2">
+                                            <ul>
+                                                @foreach (var city in group)
+                                                {
+                                                    var stateSlug = Slug(city.State);
+                                                    var citySlug = Slug(city.City);
+                                                    <li>
+                                                        <a href="/@stateSlug/@citySlug">
+                                                            @city.City <span class="countSpan">(@city.Count)</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                </div> *@
+
+
+
+
+                            <div class="row">
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <ul>
+                                        <li>
+                                            <a href="/@Slug("California")/@Slug("Los Angeles")">
+                                                Los Angeles <span class="countSpan">(6)</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="/@Slug("California")/@Slug("Sacramento")">Sacramento <span class="countSpan">(2)</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <ul>
+                                        <li><a href="/@Slug("Arizona")/@Slug("Phoenix")">Phoenix <span class="countSpan">(6)</span></a></li>
+                                        <li><a href="/@Slug("California")/@Slug("San Francisco")">San Francisco <span class="countSpan">(6)</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <ul>
+                                        <li><a href="/@Slug("California")/@Slug("San Diego")">San Diego <span class="countSpan">(6)</span></a></li>
+                                        <li><a href="/@Slug("New Mexico")/@Slug("Albuquerque")">Albuquerque <span class="countSpan">(2)</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <ul>
+                                        <li><a href="/@Slug("Nevada")/@Slug("Las Vegas")">Las Vegas <span class="countSpan">(24)</span></a></li>
+                                        <li><a href="/@Slug("Indiana")/@Slug("Indianapolis")">Indianapolis <span class="countSpan">(6)</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <ul>
+                                        <li><a href="/@Slug("New York")/@Slug("New York City")">New York City <span class="countSpan">(6)</span></a></li>
+                                        <li><a href="/@Slug("Colorado")/@Slug("Denver")">Denver <span class="countSpan">(6)</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <ul>
+                                        <li><a href="/@Slug("California")/@Slug("San Jose")">San Jose <span class="countSpan">(6)</span></a></li>
+                                        <li><a href="/@Slug("Oregon")/@Slug("Portland")">Portland <span class="countSpan">(3)</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="advertiesment_section">
+                <div class="container">
+                    <div Class="row align-items-center">
+                        <div class="col-lg-7">
+                            <h2>Advertise your services on ESCORTS DIRECTORY</h2>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="bannerButton_group">
+                                <a href="#">Find out more</a>
+                                <a href="#">Sign Up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--Footer Section -->
+            <section class="footer_section foorterNew">
+                <div class="ftLinks_container container">
+                    <div class="row">
+                        <div class="col-lg-2 col-xl-2">
+                            <div class="footerLogo_block"><a href="~/"><img src="~/img/main_logo.png" alt="" title="" class="img-fluid" /></a></div>
+                        </div>
+
+                        <div class="col-lg-10 col-xl-10">
+                            <div class="ftLink_section">
+                                <ul>
+                                    @* <li><a href="#">VIP Escorts</a></li>
+                                        <li><a href="#">Girls</a></li>
+                                        <li><a href="#">Pornstars</a></li>
+                                        <li><a href="#">City tour</a></li>
+                                        <li><a href="#">Agencies</a></li>
+                                        <li><a href="#">Clubs</a></li>
+                                        <li><a href="#">Independent</a></li>
+                                        <li><a href="#">Videos</a></li>
+                                        <li><a href="#">FAQ</a></li>
+                                        <li><a href="#">Reviews</a></li> *@
+                                    <li><a href="/about_us">About Us</a></li>
+                                    @* <li><a href="#">Terms & Privacy</a></li> *@
+                                    <li><a href="/terminology">Terminology</a></li>
+                                    <li><a href="/etiquette">Etiquette</a></li>
+                                </ul>
+
+                                <div class="ft_desclaimer">
+                                    <p>This WebSite is an advertising and information resource, and as such has no connection or liability with any of the sites or individuals mentioned here. We ONLY sell advertisement space, we are not an escort agency, nor we are in any way involved in escorting or prostitution business. We take no responsibility for the content or actions of third party websites or individuals that you may access following links, email or phone contacts from this portal.</p>
+                                </div>
+                                <div class="copyrightInfo_block">© @DateTime.Now.Year.ToString() Escorts Directory. All rights reserved.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--End Footer Section -->
+        </footer>
+        <!--End Footer Section -->
+
+
+    </div>
+
+
+
+    <!--(necessary JavaScript plugins)============================ -->
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <!--PLUGINS-->
+    <script src="~/js/plugins/wow.min.js"></script>
+    <script src="~/js/plugins/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="~/age-verification/js/jquery.cookie.min.js"></script>
+    <script src="~/age-verification/js/age-verification.js"></script>
+
+    <script src="~/js/pixa_script.js"></script>
     @RenderSection("Scripts", required: false)
-
-
-
-
 
 
 

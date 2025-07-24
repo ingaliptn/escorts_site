@@ -10,7 +10,7 @@
 
     <section class="featured_model_carouslSection model_listGridSection">
         <div class="featuresModle_bgOverlay">
-            <div class="highlitedModel_gridList">
+            @*<div class="highlitedModel_gridList">
                 @foreach (var escort in Model.Featured)
                 {
 
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 }
-            </div>
+            </div>*@
         </div>
     </section>
 
@@ -57,7 +57,7 @@
     <section class="featured_model_carouslSection model_listGridSection">
         <div class="featuresModle_bgOverlay">
             <div class="regularModel_gridList" id="escortContainer">
-                @await Html.PartialAsync("_EscortCardsPartial", Model.Regular.Take(12).ToList())
+                @*@await Html.PartialAsync("_EscortCardsPartial", Model.Regular.Take(12).ToList())*@
 
             </div>
             <div class="bannerButton_group">
