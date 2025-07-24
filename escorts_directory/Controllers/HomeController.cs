@@ -120,8 +120,15 @@ namespace escorts_directory.Controllers
             {
                 return RedirectToAction("Error404", "Error");
             }
+			var breadcrumbs = new List<BreadcrumbItem>
+			{
+				new BreadcrumbItem { Title = "Home", Controller = "Home", Action = "Index", IsActive = false },
+				new BreadcrumbItem { Title = city, Controller = "Home", Action = "ByLocation", IsActive = true }
+			};
 
-            ViewBag.State = state.Replace("-", " ");
+			ViewBag.Breadcrumbs = breadcrumbs;
+
+			ViewBag.State = state.Replace("-", " ");
             ViewBag.City = city.Replace("-", " ");
             return View("ByLocation", model);
         }
@@ -228,7 +235,7 @@ namespace escorts_directory.Controllers
 
             var photoCount = _photoHelper.GetPhotoCount(escort.Name, escort.Id);
             var services = await _escortService.GetServicesByEscortIdAsync(escort.Id);
-            var random = (await _escortService.GetRandomEscortsAsync(6))
+            var random = (await _escortService.GetEscortsByCityAsync(city))
                 .Select(e => new EscortWithPhoto
                 {
                     Escort = e,

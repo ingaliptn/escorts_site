@@ -10,7 +10,11 @@
 <!--inner page banner-->
 <section class="innerPage_headerBG" style="background:url('@Url.Content("~/images/bg_img/3.jpg")') center center;">
 	<div class="container">
-		<h1>Escorts in @ViewBag.City, @ViewBag.State</h1>
+		<h1>VIP Escorts</h1>
+		<div class="breadcum_block">
+			@await Html.PartialAsync("_BreadcrumbsPartial", (List<BreadcrumbItem>)ViewBag.Breadcrumbs)
+
+		</div>
 	</div>
 	<div class="sliderBanner_Overlay"></div>
 </section>

@@ -20,8 +20,7 @@ namespace escorts_directory.Controllers
 		public IActionResult GenericError(int code)
 		{
 			Console.WriteLine($"Код помилки: {code}");
-			if (code == 404) return RedirectToAction("Error404");
-			return RedirectToAction("Error500");
+			return RedirectToAction("Error404");
 		}
 
 	}

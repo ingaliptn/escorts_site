@@ -24,8 +24,8 @@ app.UseStaticFiles();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Error/500");
-	app.UseStatusCodePagesWithReExecute("/Error/{0}");
+	app.UseExceptionHandler("/Error/400");
+	app.UseStatusCodePagesWithReExecute("/Error/400");
 	//app.UseExceptionHandler("/Home/Error");
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
